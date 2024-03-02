@@ -68,10 +68,13 @@ class Hackathon {
         LEFT JOIN Challenge c ON hc.challenge_id = c.challenge_id
         WHERE h.hackathon_id = ?
       `, [hackathonId]);
-  
+
+      const hackathon_details = {...hackathon[0]};
+      delete hackathon_details.challenge_id;
+      delete hackathon_details.challenge_title;
       if (hackathon.length) {
         const result = {
-          ...hackathon[0],
+          hackathon_details,
           challenges: hackathon.map(row => ({
             challenge_id: row.challenge_id,
             title: row.challenge_title
