@@ -47,6 +47,11 @@ export class TeamService {
         return this.http.get<Team[]>(url);
     }
 
+    getCompetitorsByTeamId(teamId: number): Observable<Competitor[]> {
+        const url = `${this.apiUrl}/${teamId}/competitors`;
+        return this.http.get<Competitor[]>(url);
+    }
+
 
     // updateTeam(hackathon_id?: number, hackathon?: Hackathon): Observable<any> {
     //     // let oldHackathon = this.dummyHackathons.find(hackathon => hackathon.hackathon_id === id);

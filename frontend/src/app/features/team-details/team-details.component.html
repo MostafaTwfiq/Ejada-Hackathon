@@ -1,0 +1,12 @@
+<div class="container m-3 card">
+    <h2 class="title m-2">{{"team.name" | translate}} </h2>
+    <ul>
+        <li *ngFor="let competitor of competitors">
+            <h3>{{ competitor.name }}</h3>
+            <p><label class="form-label">{{"competitor.email" | translate}}</label> {{ competitor.email }}</p>
+            <p><label class="form-label">{{"competitor.mobile" | translate}}</label> {{ competitor.mobile }}</p>
+            <p><label class="form-label">{{"competitor.title" | translate}}</label> {{ competitor.title }}</p>
+            <p><label class="form-label">{{"competitor.competitor_id" | translate}}</label> {{ competitor.competitor_id }}</p>
+        </li>
+    </ul>
+</div>
