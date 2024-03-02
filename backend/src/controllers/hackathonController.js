@@ -32,7 +32,11 @@ const hackathonController = {
         return res.status(403).json({ message: 'Forbidden' });
       }
 
-      const newHackathon = await hackathonService.createHackathon(req.body);
+      const {name, theme, registration_start_date, registration_end_date, 
+        event_date, max_team_size, max_num_teams, challenges} = req.body;
+
+      const newHackathon = await hackathonService.createHackathon(name, theme, registration_start_date, 
+        registration_end_date, event_date, max_team_size, max_num_teams, challenges);
       res.status(201).json({ message: 'Hackathon added successfully', hackathonId: newHackathon.insertId });
     } catch (error) {
       res.status(500).json({ message: error.message });

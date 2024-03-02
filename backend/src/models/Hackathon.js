@@ -1,4 +1,5 @@
 const db = require('../config/database');
+const Challenge = require('./Challenge.js');
 
 class Hackathon {
   // Fetch all hackathons
@@ -22,16 +23,49 @@ class Hackathon {
   }
 
   // Add a new hackathon
-  static async addHackathon(hackathonData) {
-    const { name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams } = hackathonData;
+  static async addHackathon(name, theme, registration_start_date, registration_end_date, 
+    event_date, max_team_size, max_num_teams, challenges) {
+    let connection;
     try {
-      const [result] = await db.execute(
+      connection = await pool.getConnection();
+      await connection.beginTransaction();
+      
+      // Create the hackathon
+      let [hackathonResult] = await connection.execute(
         'INSERT INTO Hackathon (name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams) VALUES (?, ?, ?, ?, ?, ?, ?)',
         [name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams]
       );
-      return result;
+      const hackathonId = hackathonResult.insertId;
+
+      // Iterate over challenges and create or link them
+      for (const challenge of challenges) {
+        let [existing] = await connection.execute(
+          'SELECT challenge_id FROM Challenge WHERE title = ? LIMIT 1',
+          [challenge.title]
+        );
+
+        let challengeId;
+        if (existing.length > 0) {
+          challengeId = existing[0].challenge_id;
+        } else {
+          let createdChallenge = Challenge.addChallenge(challenge)
+          challengeId = createdChallenge.insertId;
+        }
+
+        // Link challenge to the hackathon in Hachathon_Challenge table
+        await connection.execute(
+          'INSERT INTO Hackathon_Challenge (hackathon_id, challenge_id) VALUES (?, ?)',
+          [hackathonId, challengeId]
+        );
+      }
+
+      await connection.commit();
+      return { hackathonId };
     } catch (error) {
-      throw error;
+      if (connection) await connection.rollback();
+      throw error; // Rethrow after rolling back
+    } finally {
+      if (connection) await connection.release();
     }
   }
 
