@@ -13,6 +13,11 @@ app.set('database', database);
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.url}`)
+  console.log(req.body)
+  next()
+})
 
 // Use hackathonRoutes for any request that starts with '/hackathons'
 app.use('/hackathons', hackathonRoutes);

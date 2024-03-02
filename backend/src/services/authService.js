@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config/config'); // Make sure you have this constant in your config
 
 const registerUser = async (userData) => {
-  const { username, password, role } = userData;
+  const { username, password, role = 'Normal' } = userData;
   const existingUser = await User.getUserByUsername(username);
   if (existingUser) {
     throw new Error('User already exists');
