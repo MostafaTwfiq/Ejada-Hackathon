@@ -27,7 +27,7 @@ class Hackathon {
     event_date, max_team_size, max_num_teams, challenges) {
     let connection;
     try {
-      connection = await pool.getConnection();
+      connection = await db.getConnection();
       await connection.beginTransaction();
       
       // Create the hackathon
