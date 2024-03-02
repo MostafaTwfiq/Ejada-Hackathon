@@ -1,0 +1,26 @@
+<div class="container mt-5 card">
+    <div class="m-2">
+        <h2 class="title">{{ 'signup.title' | translate }}</h2>
+    </div>
+    <div class="p-4">
+        <form (ngSubmit)="onSignup()">
+            <!-- Other inputs remain the same -->
+            <div class="mb-3">
+                <label for="email" class="form-label label">{{ 'signup.email' | translate }}</label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="user.username" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label label">{{ 'login.password' | translate }}</label>
+                <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password"
+                    required>
+            </div>
+
+            <button type="submit" class="btn btn-success">{{ 'signup.signupButton' | translate }}</button>
+        
+        <div class="mt-3">
+            {{"label_loginMessage" | translate }}<a routerLink="/login" class="auth-link">{{"login.title" | translate}}</a>
+        </div>
+        </form>
+    </div>
+
+</div>
