@@ -26,6 +26,12 @@ const hackathonController = {
 
   addHackathon: async (req, res) => {
     try {
+      
+      // Check if the authenticated user they're an admin
+      if (req.user.role !== 'Admin') {
+        return res.status(403).json({ message: 'Forbidden' });
+      }
+
       const newHackathon = await hackathonService.createHackathon(req.body);
       res.status(201).json({ message: 'Hackathon added successfully', hackathonId: newHackathon.insertId });
     } catch (error) {
@@ -36,6 +42,12 @@ const hackathonController = {
   updateHackathon: async (req, res) => {
     try {
       const hackathonId = req.params.id;
+
+      // Check if the authenticated user they're an admin
+      if (req.user.role !== 'Admin') {
+        return res.status(403).json({ message: 'Forbidden' });
+      }
+
       await hackathonService.updateHackathon(hackathonId, req.body);
       res.status(200).json({ message: 'Hackathon updated successfully' });
     } catch (error) {
@@ -46,6 +58,12 @@ const hackathonController = {
   deleteHackathon: async (req, res) => {
     try {
       const hackathonId = req.params.id;
+
+      // Check if the authenticated user they're an admin
+      if (req.user.role !== 'Admin') {
+        return res.status(403).json({ message: 'Forbidden' });
+      }
+      
       await hackathonService.deleteHackathon(hackathonId);
       res.status(200).json({ message: 'Hackathon deleted successfully' });
     } catch (error) {

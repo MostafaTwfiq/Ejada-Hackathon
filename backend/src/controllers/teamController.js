@@ -54,6 +54,12 @@ const teamController = {
   getTeamsByHackathonId: async (req, res) => {
     try {
       const hackathonId = req.params.hackathonId;
+
+      // Check if the authenticated user they're an admin
+      if (req.user.role !== 'Admin') {
+        return res.status(403).json({ message: 'Forbidden' });
+      }
+
       const teams = await teamService.getTeamsByHackathonId(hackathonId);
       res.status(200).json(teams);
     } catch (error) {
