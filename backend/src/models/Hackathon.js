@@ -1,5 +1,5 @@
 const db = require('../config/database');
-const Challenge = require('./Challenge.js');
+const challengeService = require('../services/challengeService');
 
 class Hackathon {
   // Fetch all hackathons
@@ -48,7 +48,7 @@ class Hackathon {
         if (existing.length > 0) {
           challengeId = existing[0].challenge_id;
         } else {
-          let createdChallenge = Challenge.addChallenge(challenge)
+          let createdChallenge = challengeService.createChallenge(challenge)
           challengeId = createdChallenge.insertId;
         }
 
