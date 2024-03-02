@@ -16,10 +16,11 @@ const userController = {
   loginUser: async (req, res) => {
     try {
       const { username, password } = req.body;
-      const token = await authService.loginUser(username, password);
+      const { token, role } = await authService.loginUser(username, password);
       res.status(200).json({ 
         message: 'Authentication successful', 
-        token: token 
+        token: token,
+        role: role
       });
     } catch (error) {
       res.status(401).json({ message: error.message });
