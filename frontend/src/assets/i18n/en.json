@@ -64,7 +64,7 @@
     "label_add": "add",
     "title_teamRegistrationForm": "Team Registration Form",
     "team": {
-        "name": "اسم الفريق",
+        "name": "Team Name",
         "members": "Team Members",
         "add": "Add member",
         "register": "Register Team"
