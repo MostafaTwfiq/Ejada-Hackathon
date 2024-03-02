@@ -1,74 +1,70 @@
-const pool = require('../config/database');
+const pool = require('../config/database'); 
 
-const Team = {
-  // Function to create a new team
-  create: (teamData, callback) => {
-    const query = `
-      INSERT INTO Team (team_name, hackathon_id)
-      VALUES (?, ?)
-    `;
-    const { team_name, hackathon_id } = teamData;
+class Team {
 
-    pool.query(query, [team_name, hackathon_id], (error, results) => {
-      if (error) {
-        return callback(error);
-      }
-      return callback(null, results);
-    });
-  },
-
-  // Function to get team details by team ID
-  getById: (teamId, callback) => {
-    const query = `SELECT * FROM Team WHERE team_id = ?`;
-
-    pool.query(query, [teamId], (error, results) => {
-      if (error) {
-        return callback(error);
-      }
-      return callback(null, results[0]); // Assuming team_id is unique, return the first result.
-    });
-  },
-
-  // Function to update team details
-  update: (teamId, teamData, callback) => {
-    const query = `
-      UPDATE Team
-      SET team_name = ?, hackathon_id = ?
-      WHERE team_id = ?
-    `;
-    const { team_name, hackathon_id } = teamData;
-
-    pool.query(query, [team_name, hackathon_id, teamId], (error, results) => {
-      if (error) {
-        return callback(error);
-      }
-      return callback(null, results);
-    });
-  },
-
-  // Function to delete a team
-  delete: (teamId, callback) => {
-    const query = `DELETE FROM Team WHERE team_id = ?`;
-
-    pool.query(query, [teamId], (error, results) => {
-      if (error) {
-        return callback(error);
-      }
-      return callback(null, results);
-    });
-  },
-
-  // Function to list all teams for a specific hackathon
-  getByHackathonId: (hackathonId, callback) => {
-    const query = `SELECT * FROM Team WHERE hackathon_id = ?`;
-
-    pool.query(query, [hackathonId], (error, results) => {
-      if (error) {
-        return callback(error);
-      }
-      return callback(null, results);
-    });
+  // Create a new team
+  static async create(teamData) {
+    try {
+      const query = `
+        INSERT INTO Team (team_name, hackathon_id)
+        VALUES (?, ?)
+      `;
+      const { team_name, hackathon_id } = teamData;
+      const [result] = await pool.execute(query, [team_name, hackathon_id]);
+      return result;
+    } catch (error) {
+      throw error;
+    }
   }
-};
+
+  // Get team by ID
+  static async getById(teamId) {
+    try {
+      const query = `SELECT * FROM Team WHERE team_id = ?`;
+      const [rows] = await pool.execute(query, [teamId]);
+      return rows[0]; // Assuming team_id is unique, hence returning the first row
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // Update team
+  static async update(teamId, teamData) {
+    try {
+      const query = `
+        UPDATE Team
+        SET team_name = ?, hackathon_id = ?
+        WHERE team_id = ?
+      `;
+      const { team_name, hackathon_id } = teamData;
+      const [result] = await pool.execute(query, [team_name, hackathon_id, teamId]);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // Delete team
+  static async delete(teamId) {
+    try {
+      const query = `DELETE FROM Team WHERE team_id = ?`;
+      const [result] = await pool.execute(query, [teamId]);
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // Get teams by hackathon ID
+  static async getByHackathonId(hackathonId) {
+    try {
+      const query = `SELECT * FROM Team WHERE hackathon_id = ?`;
+      const [rows] = await pool.execute(query, [hackathonId]);
+      return rows; // Return all matching rows
+    } catch (error) {
+      throw error;
+    }
+  }
+}
 
 module.exports = Team;

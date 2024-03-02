@@ -6,8 +6,8 @@ const mysql = require('mysql');
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: 'localhost',
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
+  user: "DB_USER",
+  password: "DB_PASSWORD",
   database: 'hackathon_management'
 });
 
