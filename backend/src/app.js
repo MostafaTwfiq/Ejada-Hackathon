@@ -1,5 +1,7 @@
 const express = require('express');
 const hackathonRoutes = require('./routes/hackathonRoutes');
+const userRoutes = require('./routes/userRoutes');
+
 
 const app = express();
 const database = require('./config/database');
@@ -10,6 +12,9 @@ app.set('database', database);
 app.use(express.json());
 // Use hackathonRoutes for any request that starts with '/hackathons'
 app.use('/hackathons', hackathonRoutes);
+// Use userRoutes for any request that starts with '/users'
+app.use('/users', userRoutes);
+
 
 // Other app configurations and routes...
 
