@@ -28,7 +28,7 @@ const loginUser = async (username, password) => {
     process.env.JWT_SECRET || JWT_SECRET,
     { expiresIn: '1h' }
   );
-  return token, user.role;
+  return {token, 'role': user.role};
 };
 
 const updateUser = async (userId, updateData) => {
