@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   isRtl: boolean = true;
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private authService: AuthenticationService) {
     translate.setDefaultLang('ar');
     this.setLanguageDirection('ar');
     this.translate.onLangChange.subscribe((event) => {
@@ -24,6 +25,10 @@ export class AppComponent {
   
   switchLanguage(language: string) {
     this.translate.use(language);
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
   

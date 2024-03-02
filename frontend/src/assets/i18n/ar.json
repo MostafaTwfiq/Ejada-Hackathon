@@ -9,10 +9,12 @@
     "hackathonDetails": {
         "title": "تفاصيل الهاكاثون",
         "theme": "الموضوع",
-        "registrationDateRange": "نطاق تاريخ التسجيل",
+        "registrationStartDate": " تاريخ بداية التسجيل",
+        "registrationEndDate": " تاريخ نهاية التسجيل",
         "eventDate": "تاريخ الحدث",
         "maxTeamSize": "الحد الأقصى لحجم الفريق",
         "maxNumTeams": "الحد الأقصى لعدد الفرق",
+        "challenges": "التحديات",
         "backToList": "العودة إلى القائمة",
         "addTitle": "إضافة هاكاثون جديد",
         "detailsTitle": "تفاصيل الهاكاثون",
@@ -52,6 +54,8 @@
     "label_loginMessage": "هل تمتلك حسابًا؟",
     "hackathon": {
         "error": "فشل في استرجاع بيانات الهاكاثون: {{error}}"
-    }
+    },
+    "label_logout": "تسجيل الخروج",
+    "label_userProfile": "الملف الشخصي"
     
 }

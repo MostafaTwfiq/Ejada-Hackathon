@@ -10,26 +10,26 @@ export class HackathonService {
     private apiUrl = 'http://localhost:3000/hackathons'; // Replace with your API endpoint
 
     // Dummy data for testing
-    private dummyHackathons: Hackathon[] = [
-        {
-            hackathon_id: 1,
-            name: 'Hackathon 1',
-            theme: 'Theme 1',
-            registration_date_range: '01/01/2022 - 02/01/2022',
-            event_date: new Date('2022-02-15'),
-            max_team_size: 4,
-            max_num_teams: 10
-        },
-        {
-            hackathon_id: 2,
-            name: 'Hackathon 2',
-            theme: 'Theme 2',
-            registration_date_range: '03/01/2022 - 04/01/2022',
-            event_date: new Date('2022-03-20'),
-            max_team_size: 3,
-            max_num_teams: 15
-        }
-    ];
+    // private dummyHackathons: Hackathon[] = [
+    //     {
+    //         hackathon_id: 1,
+    //         name: 'Hackathon 1',
+    //         theme: 'Theme 1',
+    //         registration_date_range: '01/01/2022 - 02/01/2022',
+    //         event_date: new Date('2022-02-15'),
+    //         max_team_size: 4,
+    //         max_num_teams: 10
+    //     },
+    //     {
+    //         hackathon_id: 2,
+    //         name: 'Hackathon 2',
+    //         theme: 'Theme 2',
+    //         registration_date_range: '03/01/2022 - 04/01/2022',
+    //         event_date: new Date('2022-03-20'),
+    //         max_team_size: 3,
+    //         max_num_teams: 15
+    //     }
+    // ];
 
     constructor(private http: HttpClient) { }
 
@@ -45,7 +45,7 @@ export class HackathonService {
         // Replace with actual HTTP request when database is set up
         // let hackathon = this.dummyHackathons.find(hackathon => hackathon.hackathon_id === id) ;
         // return of(hackathon != undefined? hackathon: {} );
-        const url = `${this.apiUrl}/${id}`;
+        const url = `${this.apiUrl}/${id}/challenges`;
         return this.http.get<Hackathon>(url);
     }
 

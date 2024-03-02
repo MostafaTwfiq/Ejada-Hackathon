@@ -13,6 +13,9 @@
         "eventDate": "Event Date",
         "maxTeamSize": "Maximum Team Size",
         "maxNumTeams": "Maximum Number of Teams",
+        "registrationStartDate": "Registration Start Date",
+        "registrationEndDate": "ٌRegistration End Date",
+        "challenges": "Challenges",
         "backToList": "Back to List",
         "addTitle": "Add New Hackathon",
         "detailsTitle": "Hackathon Details",
@@ -44,5 +47,7 @@
     "label_loginMessage": "Already have an account? ",
     "hackathon": {
         "error": "Error fetching hackathon details"
-    }
+    },
+    "label_logout": "Logout",
+    "label_userProfile": "User Profile"
 }

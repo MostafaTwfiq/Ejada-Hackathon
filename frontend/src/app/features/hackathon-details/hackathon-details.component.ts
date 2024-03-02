@@ -5,6 +5,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { HackathonService } from 'src/app/services/hackathon.service';
 import { Hackathon } from 'src/app/models/hackathon.model';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from 'src/app/models/user.model';
+import { RoleEnum } from 'src/enums/role.enum';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Challenge } from 'src/app/models/challenge.model';
 
 @Component({
   selector: 'app-hackathon-details',
@@ -16,15 +20,20 @@ export class HackathonDetailsComponent implements OnInit {
   isAddMode: boolean = false;
   isEditMode: boolean = false; // Starts in view mode by default
   isViewMode: boolean = true;
+  currentUser: User = {};
+  RoleEnum = RoleEnum;
+  newChallenge: Challenge = {};
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private translate: TranslateService,
-    private hackathonService: HackathonService
+    private hackathonService: HackathonService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
+    this.currentUser != this.authService.currentUserValue;
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id == undefined) {
@@ -79,6 +88,20 @@ export class HackathonDetailsComponent implements OnInit {
       this.router.navigate(['/hackathons']);
     } else {
       this.isEditMode = false;
+    }
+  }
+
+  addNewChallenge() {
+    if (this.newChallenge && this.newChallenge.title && this.newChallenge.title.trim() !== '') {
+      const newChallenge: Challenge = {
+        title: this.newChallenge.title.trim()
+      };
+      if (this.hackathon.challenges)
+        this.hackathon.challenges.push(newChallenge);
+      else
+          this.hackathon.challenges = [newChallenge];
+        
+      this.newChallenge = {}; // Clear the input field after adding the challenge
     }
   }
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Hackathon } from '../../models/hackathon.model';
 import { HackathonService } from '../../services/hackathon.service';
+import { User } from 'src/app/models/user.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { RoleEnum } from 'src/enums/role.enum';
 
 @Component({
   selector: 'app-hackathon-list',
@@ -10,11 +13,16 @@ import { HackathonService } from '../../services/hackathon.service';
 })
 export class HackathonListComponent implements OnInit {
   hackathons: Hackathon[] = [];
-
-  constructor(private hackathonService: HackathonService, private router: Router) { }
+  currentUser: User ={};
+  RoleEnum = RoleEnum;
+  
+  constructor(private hackathonService: HackathonService,
+    private router: Router,
+    private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.getHackathons();
+    this.currentUser != this.authService.currentUserValue;
   }
 
   getHackathons(): void {
