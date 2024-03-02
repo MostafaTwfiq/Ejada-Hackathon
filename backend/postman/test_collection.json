@@ -248,7 +248,7 @@
                 ],
                 "body": {
                     "mode": "raw",
-                    "raw": "{\n    \"team_name\": \"Awesome Team\",\n    \"hackathon_id\": 1\n}",
+                    "raw": "{\n    \"team_name\": \"Awesome Team\",\n    \"hackathon_id\": 1,\n \"compatitors\": [{\"name\": \"Jane Doe\", \n \"email\": \"jane.doe@example.com\", \n\"mobile\": \"555-0101\", \n\"title\": \"Data Scientist\"}]}",
                     "options": {
                         "raw": {
                             "language": "json"
