@@ -1,14 +1,12 @@
-// config/database.js
+const mysql = require('mysql2');
 
-const mysql = require('mysql');
+const dbConfig = {
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'root',
+  database: process.env.DB_NAME || 'hackathon_registration_portal'
+};
 
-// Create a connection pool to the MySQL database
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'hackathon_registration_portal'
-});
+const pool = mysql.createPool(dbConfig);
 
-module.exports = pool;
+module.exports = pool.promise();
