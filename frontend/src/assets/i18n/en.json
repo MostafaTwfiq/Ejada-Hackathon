@@ -29,7 +29,7 @@
         "addTitle": "Add New Hackathon",
         "detailsTitle": "Hackathon Details",
         "name": "Name",
-        "edit": "Edit",
+        "edit_label": "Edit",
         "save": "Save",
         "cancel": "Cancel",
         "newChallengesPlaceholder": "Enter new challenges separated by commas"

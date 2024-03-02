@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { TranslateService } from '@ngx-translate/core';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent extends BaseComponent{
   model: any = {};
   error: string | null = null;
 
   constructor(
+    injector: Injector,
     private authService: AuthenticationService,
-    private translate: TranslateService,
     private router: Router
-  ) { }
+  ) { super(injector); }
 
   onLogin(): void {
     this.authService.login(this.model.username, this.model.password).subscribe({

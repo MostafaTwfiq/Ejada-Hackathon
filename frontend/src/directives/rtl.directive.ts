@@ -14,9 +14,9 @@ export class RtlDirective implements OnInit {
         const isLanguageRTL = this.isLanguageRTL(selectedLanguage);
 
         if ((this.isRtl && isLanguageRTL) || (!this.isRtl && !isLanguageRTL)) {
-            this.renderer.addClass(this.elementRef.nativeElement, 'text-right');
+            this.renderer.setStyle(this.elementRef.nativeElement, 'direction', 'rtl');
         } else {
-            this.renderer.addClass(this.elementRef.nativeElement, 'text-left');
+            this.renderer.setStyle(this.elementRef.nativeElement, 'direction', 'ltr');
         }
     }
 

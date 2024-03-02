@@ -1,28 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Hackathon } from '../../models/hackathon.model';
 import { HackathonService } from '../../services/hackathon.service';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { RoleEnum } from 'src/enums/role.enum';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-hackathon-list',
   templateUrl: './hackathon-list.component.html',
   styleUrls: ['./hackathon-list.component.css']
 })
-export class HackathonListComponent implements OnInit {
+export class HackathonListComponent extends BaseComponent implements OnInit {
   hackathons: Hackathon[] = [];
   currentUser?: User | null;
   RoleEnum = RoleEnum;
 
-  constructor(private hackathonService: HackathonService,
+  constructor(injector: Injector, 
+    private hackathonService: HackathonService,
     private router: Router,
-    private authService: AuthenticationService) { }
+    private authService: AuthenticationService) { 
+    super(injector);
+    }
 
   ngOnInit(): void {
+    
     this.getHackathons();
     this.currentUser = this.authService.currentUserValue;
+    
   }
 
   getHackathons(): void {

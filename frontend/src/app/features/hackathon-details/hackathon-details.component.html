@@ -1,109 +1,118 @@
-<div class="container mt-4 card">
-    <!-- Heading based on mode -->
-    <h2 class="title" *ngIf="isAddMode">{{ 'hackathonDetails.addTitle' | translate }}</h2>
-    <h2 class="title" *ngIf="!isAddMode">{{ 'hackathonDetails.detailsTitle' | translate }}</h2>
-
-    <!-- View Mode -->
-    <div class="container mt-2" *ngIf="isViewMode">
-        <p><label class="label">{{ 'hackathonDetails.name' | translate }}: </label> {{ hackathon.name }}</p>
-        <p><label class="label">{{ 'hackathonDetails.theme' | translate }}:</label> {{ hackathon.theme }}</p>
-        <p><label class="label">{{ 'hackathonDetails.registrationStartDate' | translate }}:</label> {{ hackathon.registration_start_date | date: 'medium' }}</p>
-        <p><label class="label">{{ 'hackathonDetails.registrationEndDate' | translate }}:</label> {{
-            hackathon.registration_end_date | date: 'medium' }}</p>
-        <p><label class="label">{{ 'hackathonDetails.eventDate' | translate }}:</label> {{ hackathon.event_date | date: 'medium'}}</p>
-        <p><label class="label">{{ 'hackathonDetails.maxTeamSize' | translate }}:</label> {{ hackathon.max_team_size }}</p>
-        <p><label class="label">{{ 'hackathonDetails.maxNumTeams' | translate }}:</label> {{ hackathon.max_num_teams }}</p>
-        <div class="mb-3">
-            <label class="label">{{ 'hackathonDetails.challenges' | translate }}</label>
-            <div class="tag-list">
-                <div class="tag" *ngFor="let challenge of challenges">
-                    {{ challenge.title }}
-                </div>
-            </div>
-        </div>
-        <button *ngIf="currentUser && currentUser.role==RoleEnum.ADMIN" class="btn btn-primary" (click)="enableEditMode()">{{ 'hackathonDetails.edit_label' | translate }}</button>
-        <button *ngIf="currentUser && currentUser.role==RoleEnum.NORMAL && this.teams.length < maxSize" class="btn btn-primary" (click)="register()">{{
-            'register' | translate }}</button>
-    </div>
-
-    <!-- Edit/Add Mode -->
-    <div class="container mt-4 " >
+<div [class.text-left]="!isRtl" [class.text-right]="isRtl">
+    <div class="container mt-4 card " >
+        <!-- Heading based on mode -->
+        <h2 class="title text-center" *ngIf="isAddMode">{{ 'hackathonDetails.addTitle' | translate }}</h2>
+        <h2 class="title text-center" *ngIf="!isAddMode">{{ 'hackathonDetails.detailsTitle' | translate }}</h2>
     
-        <form *ngIf="isEditMode || isAddMode" (ngSubmit)="saveHackathon()">
+        <!-- View Mode -->
+        <div class="container mt-2" *ngIf="isViewMode">
+            <p><label class="label">{{ 'hackathonDetails.name' | translate }}: </label> {{ hackathon.name }}</p>
+            <p><label class="label">{{ 'hackathonDetails.theme' | translate }}:</label> {{ hackathon.theme }}</p>
+            <p><label class="label">{{ 'hackathonDetails.registrationStartDate' | translate }}:</label> {{
+                hackathon.registration_start_date | date: 'medium' }}</p>
+            <p><label class="label">{{ 'hackathonDetails.registrationEndDate' | translate }}:</label> {{
+                hackathon.registration_end_date | date: 'medium' }}</p>
+            <p><label class="label">{{ 'hackathonDetails.eventDate' | translate }}:</label> {{ hackathon.event_date | date:
+                'medium'}}</p>
+            <p><label class="label">{{ 'hackathonDetails.maxTeamSize' | translate }}:</label> {{ hackathon.max_team_size }}
+            </p>
+            <p><label class="label">{{ 'hackathonDetails.maxNumTeams' | translate }}:</label> {{ hackathon.max_num_teams }}
+            </p>
             <div class="mb-3">
-                <label for="name" class="form-label label">{{ 'hackathonDetails.name' | translate }}</label>
-                <input type="text" id="name" class="form-control" [(ngModel)]="hackathon.name" name="name" required>
-            </div>
-    
-            <div class="mb-3">
-                <label for="theme" class="label">{{ 'hackathonDetails.theme' | translate }}</label>
-                <input type="text" id="theme" class="form-control" [(ngModel)]="hackathon.theme" name="theme" required>
-            </div>
-    
-            <div class="mb-3">
-                <label for="registrationStartDate" class="label">{{ 'hackathonDetails.registrationStartDate' |
-                    translate }}</label>
-                <input type="date" id="registrationStartDate" class="form-control"
-                    [ngModel]="hackathon.registration_start_date | date:'yyyy-MM-dd'"
-                    (ngModelChange)="hackathon.registration_start_date = $event" name="registrationStartDate" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="registrationEndDate" class="label">{{ 'hackathonDetails.registrationEndDate' |
-                    translate }}</label>
-                <input type="date" id="registrationEndDate" class="form-control"
-                    [ngModel]="hackathon.registration_end_date | date:'yyyy-MM-dd'"
-                    (ngModelChange)="hackathon.registration_end_date = $event" name="registrationEndDate" required>
-            </div>
-    
-            <div class="mb-3">
-                <label for="eventDate" class="form-label">{{ 'hackathonDetails.eventDate' | translate }}</label>
-                <input type="date" id="eventDate" class="form-control"
-                    [ngModel]="hackathon.event_date | date:'yyyy-MM-dd'"
-                    (ngModelChange)="hackathon.event_date = $event" name="eventDate" required>
-            </div>
-    
-            <div class="mb-3">
-                <label for="maxTeamSize" class="form-label">{{ 'hackathonDetails.maxTeamSize' | translate }}</label>
-                <input type="number" id="maxTeamSize" class="form-control" [(ngModel)]="hackathon.max_team_size"
-                    name="maxTeamSize" required>
-            </div>
-    
-            <div class="mb-3">
-                <label for="maxNumTeams" class="form-label">{{ 'hackathonDetails.maxNumTeams' | translate }}</label>
-                <input type="number" id="maxNumTeams" class="form-control" [(ngModel)]="hackathon.max_num_teams"
-                    name="maxNumTeams" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="challenges" class="label">{{ 'hackathonDetails.challenges' | translate }}</label>
-                <div class="tag-list">
-                    <div class="tag" *ngFor="let challenge of challenges">
+                <label class="label">{{ 'hackathonDetails.challenges' | translate }}</label>
+                <ul>
+                    <li *ngFor="let challenge of challenges">
                         {{ challenge.title }}
+                    </li>
+                </ul>
+            </div>
+            <button *ngIf="currentUser && currentUser.role==RoleEnum.ADMIN" class="btn btn-primary"
+                (click)="enableEditMode()">{{ 'hackathonDetails.edit_label' | translate }}</button>
+            <button *ngIf="currentUser && currentUser.role==RoleEnum.NORMAL && this.teams.length < maxSize"
+                class="btn btn-primary" (click)="register()">{{
+                'register' | translate }}</button>
+        </div>
+    
+        <!-- Edit/Add Mode -->
+        <div class="mt-4 ">
+    
+            <form *ngIf="isEditMode || isAddMode" (ngSubmit)="saveHackathon()">
+                <div class="mb-3">
+                    <label for="name" class="form-label label">{{ 'hackathonDetails.name' | translate }}</label>
+                    <input type="text" id="name" class="form-control" [(ngModel)]="hackathon.name" name="name" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="theme" class="label">{{ 'hackathonDetails.theme' | translate }}</label>
+                    <input type="text" id="theme" class="form-control" [(ngModel)]="hackathon.theme" name="theme" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="registrationStartDate" class="label">{{ 'hackathonDetails.registrationStartDate' |
+                        translate }}</label>
+                    <input type="date" id="registrationStartDate" class="form-control"
+                        [ngModel]="hackathon.registration_start_date | date:'yyyy-MM-dd'"
+                        (ngModelChange)="hackathon.registration_start_date = $event" name="registrationStartDate" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="registrationEndDate" class="label">{{ 'hackathonDetails.registrationEndDate' |
+                        translate }}</label>
+                    <input type="date" id="registrationEndDate" class="form-control"
+                        [ngModel]="hackathon.registration_end_date | date:'yyyy-MM-dd'"
+                        (ngModelChange)="hackathon.registration_end_date = $event" name="registrationEndDate" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="eventDate" class="form-label">{{ 'hackathonDetails.eventDate' | translate }}</label>
+                    <input type="date" id="eventDate" class="form-control"
+                        [ngModel]="hackathon.event_date | date:'yyyy-MM-dd'" (ngModelChange)="hackathon.event_date = $event"
+                        name="eventDate" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="maxTeamSize" class="form-label">{{ 'hackathonDetails.maxTeamSize' | translate }}</label>
+                    <input type="number" id="maxTeamSize" class="form-control" [(ngModel)]="hackathon.max_team_size"
+                        name="maxTeamSize" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="maxNumTeams" class="form-label">{{ 'hackathonDetails.maxNumTeams' | translate }}</label>
+                    <input type="number" id="maxNumTeams" class="form-control" [(ngModel)]="hackathon.max_num_teams"
+                        name="maxNumTeams" required>
+                </div>
+    
+                <div class="mb-3">
+                    <label for="challenges" class="label">{{ 'hackathonDetails.challenges' | translate }}</label>
+                    <div class="tag-list">
+                        <div class="tag" *ngFor="let challenge of challenges">
+                            {{ challenge.title }}
+                        </div>
+                    </div>
+                    <div class="input-group mt-2">
+                        <textarea class="custom-textarea" [(ngModel)]="newChallenges" name="newChallenges"
+                            [placeholder]="'hackathonDetails.newChallengesPlaceholder' | translate"></textarea>
+                        <button type="button" class="btn btn-primary" (click)="addChallenges()">{{ 'label_add' |
+                            translate }}</button>
                     </div>
                 </div>
-                <div class="input-group mt-2">
-                    <textarea class="custom-textarea" [(ngModel)]="newChallenges" name="newChallenges"
-                        [placeholder]="'hackathonDetails.newChallengesPlaceholder' | translate"></textarea>
-                    <button type="button" class="btn btn-primary" (click)="addChallenges()">{{ 'label_add' |
-                        translate }}</button>
-                </div>
-            </div>
     
-            <button type="submit" class="btn btn-success">{{ 'hackathonDetails.save' | translate }}</button>
-            <button type="button" class="btn btn-secondary" (click)="cancel()">{{ 'hackathonDetails.cancel' | translate
-                }}</button>
-        </form>
-    </div>
-    <div class="container mt-4">
-        <div class="mb-3">
-            <label class="label">{{ 'registeredTeams' | translate }}</label>
-            <ul>
-                <li *ngFor="let team of teams">
-                    {{ team.team_name }}
-                    <button class="btn btn-secondary m-5"  (click)="viewCompetitors(team.team_id!=null? team.team_id: 0)">View Competitors</button>
-                </li>
-            </ul>
+                <button type="submit" class="btn btn-success">{{ 'hackathonDetails.save' | translate }}</button>
+                <button type="button" class="btn btn-secondary" (click)="cancel()">{{ 'hackathonDetails.cancel' | translate
+                    }}</button>
+            </form>
+        </div>
+        <div class="mt-4" appRtl [isRtl]="true">
+            <div class="mb-3">
+                <label class="label">{{ 'registeredTeams' | translate }}</label>
+                <ul>
+                    <li *ngFor="let team of teams">
+                        {{ team.team_name }}
+                        <button class="btn btn-secondary m-5"
+                            (click)="viewCompetitors(team.team_id!=null? team.team_id: 0)">View Competitors</button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

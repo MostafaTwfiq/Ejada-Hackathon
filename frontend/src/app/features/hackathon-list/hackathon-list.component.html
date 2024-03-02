@@ -1,4 +1,4 @@
-<div class="container m-4 card text-center" >
+<div class="container m-4 card text-center" [class.text-left]="!isRtl" [class.text-right]="isRtl" >
   <h1 class="text-center mb-4 title">{{ 'hackathonList.title' | translate }}</h1>
   <div class="row">
     <!-- New card for adding a hackathon -->

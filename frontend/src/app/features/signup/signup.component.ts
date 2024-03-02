@@ -1,24 +1,26 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   // styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
+export class SignupComponent extends BaseComponent {
   user: User = {
     username: '',
     password: ''
   };
 
-  constructor(private authService: AuthenticationService,
+  constructor(injector: Injector,
+    private authService: AuthenticationService,
     private router: Router,
-    private translate: TranslateService) { }
+  ) { super(injector); }
 
   onSignup(): void {
     this.authService.signup(this.user).subscribe({

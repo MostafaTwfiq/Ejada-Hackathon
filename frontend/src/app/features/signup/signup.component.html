@@ -1,5 +1,5 @@
 <div class="container mt-5 card">
-    <div class="m-2">
+    <div class="m-2" [class.text-left]="!isRtl" [class.text-right]="isRtl">
         <h2 class="title">{{ 'signup.title' | translate }}</h2>
     </div>
     <div class="p-4">

@@ -17,6 +17,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { DatePipe } from '@angular/common';
 import { RtlDirective } from 'src/directives/rtl.directive';
 import { TeamDetailsComponent } from './features/team-details/team-details.component';
+import { BaseComponent } from './features/base/base.component';
+
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
