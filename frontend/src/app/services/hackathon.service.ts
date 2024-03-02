@@ -7,7 +7,7 @@ import { Hackathon } from '../models/hackathon.model';
     providedIn: 'root'
 })
 export class HackathonService {
-    private apiUrl = 'http://api.example.com/hackathons'; // Replace with your API endpoint
+    private apiUrl = 'http://localhost:3000/hackathons'; // Replace with your API endpoint
 
     // Dummy data for testing
     private dummyHackathons: Hackathon[] = [
@@ -31,30 +31,33 @@ export class HackathonService {
         }
     ];
 
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
     getHackathons(): Observable<Hackathon[]> {
         // For testing purposes, return dummy data
         // Replace with actual HTTP request when database is set up
-        return of(this.dummyHackathons);
+        // return of(this.dummyHackathons);
+        return this.http.get<Hackathon[]>(this.apiUrl);
     }
 
     getHackathonById(id: number): Observable<Hackathon> {
         // For testing purposes, find hackathon by ID from dummy data
         // Replace with actual HTTP request when database is set up
-        let hackathon = this.dummyHackathons.find(hackathon => hackathon.hackathon_id === id) ;
-        return of(hackathon != undefined? hackathon: {} );
+        // let hackathon = this.dummyHackathons.find(hackathon => hackathon.hackathon_id === id) ;
+        // return of(hackathon != undefined? hackathon: {} );
+        const url = `${this.apiUrl}/${id}`;
+        return this.http.get<Hackathon>(url);
     }
 
     createHackathon(hackathon: Hackathon): Observable<any> {
-        return of(this.dummyHackathons.push(hackathon));
-        // return this.http.post(this.apiUrl, hackathon);
+        // return of(this.dummyHackathons.push(hackathon));
+        return this.http.post(this.apiUrl, hackathon);
     }
 
-    updateHackathon(id?: number, hackathon?: Hackathon): Observable<any> {
-        let oldHackathon = this.dummyHackathons.find(hackathon => hackathon.hackathon_id === id);
-        oldHackathon = hackathon;
-        return of(this.dummyHackathons)
-        // return this.http.put(`${this.apiUrl}/${id}`, hackathon);
+    updateHackathon(hackathon_id?: number, hackathon?: Hackathon): Observable<any> {
+        // let oldHackathon = this.dummyHackathons.find(hackathon => hackathon.hackathon_id === id);
+        // oldHackathon = hackathon;
+        // return of(this.dummyHackathons)
+        return this.http.put(`${this.apiUrl}/${hackathon_id}`, hackathon);
     }
 }

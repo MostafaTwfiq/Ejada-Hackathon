@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HackathonService } from 'src/app/services/hackathon.service';
 import { Hackathon } from 'src/app/models/hackathon.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-hackathon-details',
@@ -19,6 +20,7 @@ export class HackathonDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private translate: TranslateService,
     private hackathonService: HackathonService
   ) { }
 
@@ -41,7 +43,7 @@ export class HackathonDetailsComponent implements OnInit {
         this.isEditMode = false; // Ensure we're in view mode after loading details
       },
       error: (error: HttpErrorResponse) => {
-        console.error('Error fetching hackathon details', error);
+        this.translate.get('hackathon.error', { error: error.message }).subscribe((message: string) => alert(message));
         this.router.navigate(['/hackathons']); // Redirect on error
       }
     });
@@ -56,13 +58,17 @@ export class HackathonDetailsComponent implements OnInit {
   saveHackathon(): void {
     if (this.isAddMode) {
       this.hackathonService.createHackathon(this.hackathon).subscribe({
-        next: () => this.router.navigate(['/hackathons']),
-        error: (error: HttpErrorResponse) => console.error('Error creating hackathon', error)
+        next: () => {
+          this.translate.get('hackathonDetails.add.success').subscribe((message: string) => alert(message)); 
+          this.router.navigate(['/hackathons'])},
+        error: (error: HttpErrorResponse) => this.translate.get('hackathonDetails.add.failure', { error: error.message }).subscribe((message: string) => alert(message))
       });
     } else {
       this.hackathonService.updateHackathon(this.hackathon.hackathon_id, this.hackathon).subscribe({
-        next: () => this.router.navigate(['/hackathons']),
-        error: (error: HttpErrorResponse) => console.error('Error updating hackathon', error)
+        next: () => {
+          this.translate.get('hackathonDetails.edit.success').subscribe((message: string) => alert(message)); 
+          this.router.navigate(['/hackathons']);},
+        error: (error: HttpErrorResponse) => this.translate.get('hackathonDetails.edit.failure', { error: error.message }).subscribe((message: string) => alert(message))
       });
     }
   }
