@@ -7,15 +7,25 @@
     <div class="container mt-2" *ngIf="isViewMode">
         <p><label class="label">{{ 'hackathonDetails.name' | translate }}: </label> {{ hackathon.name }}</p>
         <p><label class="label">{{ 'hackathonDetails.theme' | translate }}:</label> {{ hackathon.theme }}</p>
-        <p><label class="label">{{ 'hackathonDetails.registrationDateRange' | translate }}:</label> {{ hackathon.registration_date_range }}</p>
-        <p><label class="label">{{ 'hackathonDetails.eventDate' | translate }}:</label> {{ hackathon.event_date | date }}</p>
+        <p><label class="label">{{ 'hackathonDetails.registrationStartDate' | translate }}:</label> {{ hackathon.registration_start_date | date: 'medium' }}</p>
+        <p><label class="label">{{ 'hackathonDetails.registrationEndDate' | translate }}:</label> {{
+            hackathon.registration_end_date | date: 'medium' }}</p>
+        <p><label class="label">{{ 'hackathonDetails.eventDate' | translate }}:</label> {{ hackathon.event_date | date: 'medium'}}</p>
         <p><label class="label">{{ 'hackathonDetails.maxTeamSize' | translate }}:</label> {{ hackathon.max_team_size }}</p>
         <p><label class="label">{{ 'hackathonDetails.maxNumTeams' | translate }}:</label> {{ hackathon.max_num_teams }}</p>
-        <button class="btn btn-primary" (click)="enableEditMode()">{{ 'hackathonDetails.edit_label' | translate }}</button>
+        <div class="mb-3">
+            <label class="label">{{ 'hackathonDetails.challenges' | translate }}</label>
+            <div class="tag-list">
+                <div class="tag" *ngFor="let challenge of hackathon.challenges">
+                    {{ challenge.title }}
+                </div>
+            </div>
+        </div>
+        <button *ngIf="currentUser && currentUser.role==RoleEnum.ADMIN" class="btn btn-primary" (click)="enableEditMode()">{{ 'hackathonDetails.edit_label' | translate }}</button>
     </div>
 
     <!-- Edit/Add Mode -->
-    <div class="container mt-4 ">
+    <div class="container mt-4 " >
     
         <form *ngIf="isEditMode || isAddMode" (ngSubmit)="saveHackathon()">
             <div class="mb-3">
@@ -29,10 +39,16 @@
             </div>
     
             <div class="mb-3">
-                <label for="registrationDateRange" class="label">{{ 'hackathonDetails.registrationDateRange' |
+                <label for="registrationStartDate" class="label">{{ 'hackathonDetails.registrationStartDate' |
                     translate }}</label>
-                <input type="text" id="registrationDateRange" class="fcontrol"
-                    [(ngModel)]="hackathon.registration_date_range" name="registrationDateRange" required>
+                <input type="date" id="registrationStartDate" class="form-control" [(ngModel)]="hackathon.registration_start_date" name="registrationStartDate" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="registrationEndDate" class="label">{{ 'hackathonDetails.registrationEndDate' |
+                    translate }}</label>
+                <input type="date" id="registrationEndDate" class="form-control" [(ngModel)]="hackathon.registration_end_date"
+                    name="registrationEndDate" required>
             </div>
     
             <div class="mb-3">
@@ -52,6 +68,8 @@
                 <input type="number" id="maxNumTeams" class="form-control" [(ngModel)]="hackathon.max_num_teams"
                     name="maxNumTeams" required>
             </div>
+
+            
     
             <button type="submit" class="btn btn-success">{{ 'hackathonDetails.save' | translate }}</button>
             <button type="button" class="btn btn-secondary" (click)="cancel()">{{ 'hackathonDetails.cancel' | translate
