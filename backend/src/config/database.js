@@ -6,9 +6,9 @@ const mysql = require('mysql');
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: 'localhost',
-  user: "DB_USER",
-  password: "DB_PASSWORD",
-  database: 'hackathon_management'
+  user: 'root',
+  password: 'root',
+  database: 'hackathon_registration_portal'
 });
 
 module.exports = pool;
