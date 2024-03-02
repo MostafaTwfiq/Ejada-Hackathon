@@ -17,9 +17,17 @@
         "addTitle": "إضافة هاكاثون جديد",
         "detailsTitle": "تفاصيل الهاكاثون",
         "name": "الاسم",
-        "edit": "تعديل",
+        "edit_label": "تعديل",
         "save": "حفظ",
-        "cancel": "إلغاء"
+        "cancel": "إلغاء",
+        "add": {
+            "success": "تم إضافة الهاكاثون بنجاح.",
+            "failure": "فشل في إضافة الهاكاثون: {{error}}"
+        },
+        "edit": {
+            "success": "تم تحديث الهاكاثون بنجاح.",
+            "failure": "فشل في تحديث الهاكاثون: {{error}}"
+        }
     },
     "label_hackathonManagementSystem": "نظام إدارة الهاكاثونات",
     "title_language": "اللغة",
@@ -27,16 +35,23 @@
         "title": "تسجيل الدخول",
         "username": "اسم المستخدم",
         "password": "كلمة المرور",
-        "loginButton": "تسجيل الدخول"
+        "loginButton": "تسجيل الدخول",
+        "success": "تم تسجيل الدخول بنجاح.",
+        "failure": "فشل في تسجيل الدخول: {{error}}"
     },
     "signup": {
         "title": "إنشاء حساب",
         "username": "اسم المستخدم",
         "email": "البريد الإلكتروني",
         "password": "كلمة المرور",
-        "signupButton": "إنشاء الحساب"
+        "signupButton": "إنشاء الحساب",
+        "error": "فشل في إنشاء الحساب: {{error}}",
+        "success": "تم إنشاء الحساب بنجاح. يمكنك الآن تسجيل الدخول."
     },
     "label_registerMessage": "لا تمتلك حساب؟",
-    "label_loginMessage": "هل تمتلك حسابًا؟"
+    "label_loginMessage": "هل تمتلك حسابًا؟",
+    "hackathon": {
+        "error": "فشل في استرجاع بيانات الهاكاثون: {{error}}"
+    }
     
 }

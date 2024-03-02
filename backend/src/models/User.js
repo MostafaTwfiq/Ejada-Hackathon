@@ -53,6 +53,15 @@ class User {
       throw error;
     }
   }
-}
 
+static async getByUserId (userId) {
+  try {
+    const [rows] = await db.execute('SELECT * FROM User WHERE user_id = ?', [userId]);
+    return rows[0];
+  } catch (error) {
+    throw error;
+  };
+};
+
+}
 module.exports = User;

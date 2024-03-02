@@ -27,15 +27,22 @@
         "title": "Login",
         "username": "Username",
         "password": "Password",
-        "loginButton": "Login"
+        "loginButton": "Login",
+        "success": "Login successful.",
+        "failure": "Login failed: {{error}}"
     },
     "signup": {
         "title": "Signup",
         "username": "Username",
         "email": "Email",
         "password": "Password",
-        "signupButton": "Signup"
+        "signupButton": "Signup",
+        "error": "Signup failed: {{error}}",
+        "success": "Signup successful. You can now log in."
     },
     "label_registerMessage": " Don't have an account?",
-    "label_loginMessage": "Already have an account? "
+    "label_loginMessage": "Already have an account? ",
+    "hackathon": {
+        "error": "Error fetching hackathon details"
+    }
 }
