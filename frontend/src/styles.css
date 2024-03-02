@@ -42,3 +42,8 @@ body {
     text-decoration: none;
     /* Optional: removes underline on hover */
 }
+.language-dropdown {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}

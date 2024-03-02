@@ -22,7 +22,8 @@
         "name": "Name",
         "edit": "Edit",
         "save": "Save",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "newChallengesPlaceholder": "Enter new challenges separated by commas"
     },
     "label_hackathonManagementSystem": "Hackathon Management System",
     "title_language": "language",
@@ -49,5 +50,6 @@
         "error": "Error fetching hackathon details"
     },
     "label_logout": "Logout",
-    "label_userProfile": "User Profile"
+    "label_userProfile": "User Profile",
+    "label_add": "add"
 }

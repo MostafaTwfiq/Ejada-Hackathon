@@ -29,7 +29,9 @@
         "edit": {
             "success": "تم تحديث الهاكاثون بنجاح.",
             "failure": "فشل في تحديث الهاكاثون: {{error}}"
-        }
+        },
+        "newChallengesPlaceholder": "أدخل التحديات الجديدة مفصولة بفواصل"
+        
     },
     "label_hackathonManagementSystem": "نظام إدارة الهاكاثونات",
     "title_language": "اللغة",
@@ -56,6 +58,7 @@
         "error": "فشل في استرجاع بيانات الهاكاثون: {{error}}"
     },
     "label_logout": "تسجيل الخروج",
-    "label_userProfile": "الملف الشخصي"
+    "label_userProfile": "الملف الشخصي",
+    "label_add": "إضافة"
     
 }

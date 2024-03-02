@@ -20,9 +20,10 @@ export class HackathonDetailsComponent implements OnInit {
   isAddMode: boolean = false;
   isEditMode: boolean = false; // Starts in view mode by default
   isViewMode: boolean = true;
-  currentUser: User = {};
+  challenges: Challenge[] =[];
+  currentUser?: User | null;
   RoleEnum = RoleEnum;
-  newChallenge: Challenge = {};
+  newChallenges: string = "";
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,7 +34,8 @@ export class HackathonDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.currentUser != this.authService.currentUserValue;
+    this.currentUser = this.authService.currentUserValue;
+    console.log(this.currentUser?.role)
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id == undefined) {
@@ -47,8 +49,9 @@ export class HackathonDetailsComponent implements OnInit {
 
   loadHackathonDetails(id: number): void {
     this.hackathonService.getHackathonById(id).subscribe({
-      next: (data: Hackathon) => {
-        this.hackathon = data;
+      next: (data: any) => {
+        this.hackathon = data.hackathon_details;
+        this.challenges = data.challenges;
         this.isEditMode = false; // Ensure we're in view mode after loading details
       },
       error: (error: HttpErrorResponse) => {
@@ -91,17 +94,13 @@ export class HackathonDetailsComponent implements OnInit {
     }
   }
 
-  addNewChallenge() {
-    if (this.newChallenge && this.newChallenge.title && this.newChallenge.title.trim() !== '') {
-      const newChallenge: Challenge = {
-        title: this.newChallenge.title.trim()
-      };
-      if (this.hackathon.challenges)
-        this.hackathon.challenges.push(newChallenge);
-      else
-          this.hackathon.challenges = [newChallenge];
-        
-      this.newChallenge = {}; // Clear the input field after adding the challenge
+  addChallenges() {
+    if (this.newChallenges.trim() !== '') {
+      const challengeArray = this.newChallenges.split(',').map(challenge => ({
+        title: challenge.trim()
+      }));
+      this.challenges.push(...challengeArray);
+      this.newChallenges = ''; // Clear the input field after adding the challenges
     }
   }
 }

@@ -13,16 +13,16 @@ import { RoleEnum } from 'src/enums/role.enum';
 })
 export class HackathonListComponent implements OnInit {
   hackathons: Hackathon[] = [];
-  currentUser: User ={};
+  currentUser?: User | null;
   RoleEnum = RoleEnum;
-  
+
   constructor(private hackathonService: HackathonService,
     private router: Router,
     private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.getHackathons();
-    this.currentUser != this.authService.currentUserValue;
+    this.currentUser = this.authService.currentUserValue;
   }
 
   getHackathons(): void {

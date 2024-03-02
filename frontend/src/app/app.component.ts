@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from './services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,9 @@ import { AuthenticationService } from './services/authentication.service';
 })
 export class AppComponent {
   isRtl: boolean = true;
-  constructor(private translate: TranslateService, private authService: AuthenticationService) {
+  currentLanguage: string = 'ar';
+  constructor(private translate: TranslateService, private authService: AuthenticationService,
+    private router: Router) {
     translate.setDefaultLang('ar');
     this.setLanguageDirection('ar');
     this.translate.onLangChange.subscribe((event) => {
@@ -18,17 +21,21 @@ export class AppComponent {
   }
 
   setLanguageDirection(lang: string) {
+    
     const dir = lang === 'ar' ? 'rtl' : 'ltr';
     console.log(dir)
     document.documentElement.setAttribute('dir', dir);
   }
   
   switchLanguage(language: string) {
+    console.log(language)
+    this.currentLanguage = language;
     this.translate.use(language);
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   

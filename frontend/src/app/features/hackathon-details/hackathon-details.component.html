@@ -16,7 +16,7 @@
         <div class="mb-3">
             <label class="label">{{ 'hackathonDetails.challenges' | translate }}</label>
             <div class="tag-list">
-                <div class="tag" *ngFor="let challenge of hackathon.challenges">
+                <div class="tag" *ngFor="let challenge of challenges">
                     {{ challenge.title }}
                 </div>
             </div>
@@ -41,20 +41,24 @@
             <div class="mb-3">
                 <label for="registrationStartDate" class="label">{{ 'hackathonDetails.registrationStartDate' |
                     translate }}</label>
-                <input type="date" id="registrationStartDate" class="form-control" [(ngModel)]="hackathon.registration_start_date" name="registrationStartDate" required>
+                <input type="date" id="registrationStartDate" class="form-control"
+                    [ngModel]="hackathon.registration_start_date | date:'yyyy-MM-dd'"
+                    (ngModelChange)="hackathon.registration_start_date = $event" name="registrationStartDate" required>
             </div>
 
             <div class="mb-3">
                 <label for="registrationEndDate" class="label">{{ 'hackathonDetails.registrationEndDate' |
                     translate }}</label>
-                <input type="date" id="registrationEndDate" class="form-control" [(ngModel)]="hackathon.registration_end_date"
-                    name="registrationEndDate" required>
+                <input type="date" id="registrationEndDate" class="form-control"
+                    [ngModel]="hackathon.registration_end_date | date:'yyyy-MM-dd'"
+                    (ngModelChange)="hackathon.registration_end_date = $event" name="registrationEndDate" required>
             </div>
     
             <div class="mb-3">
                 <label for="eventDate" class="form-label">{{ 'hackathonDetails.eventDate' | translate }}</label>
-                <input type="date" id="eventDate" class="form-control" [(ngModel)]="hackathon.event_date" name="eventDate"
-                    required>
+                <input type="date" id="eventDate" class="form-control"
+                    [ngModel]="hackathon.event_date | date:'yyyy-MM-dd'"
+                    (ngModelChange)="hackathon.event_date = $event" name="eventDate" required>
             </div>
     
             <div class="mb-3">
@@ -69,7 +73,20 @@
                     name="maxNumTeams" required>
             </div>
 
-            
+            <div class="mb-3">
+                <label for="challenges" class="label">{{ 'hackathonDetails.challenges' | translate }}</label>
+                <div class="tag-list">
+                    <div class="tag" *ngFor="let challenge of challenges">
+                        {{ challenge.title }}
+                    </div>
+                </div>
+                <div class="input-group mt-2">
+                    <textarea class="custom-textarea" [(ngModel)]="newChallenges" name="newChallenges"
+                        [placeholder]="'hackathonDetails.newChallengesPlaceholder' | translate"></textarea>
+                    <button type="button" class="btn btn-primary" (click)="addChallenges()">{{ 'label_add' |
+                        translate }}</button>
+                </div>
+            </div>
     
             <button type="submit" class="btn btn-success">{{ 'hackathonDetails.save' | translate }}</button>
             <button type="button" class="btn btn-secondary" (click)="cancel()">{{ 'hackathonDetails.cancel' | translate
