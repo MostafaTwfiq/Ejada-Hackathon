@@ -19,7 +19,4 @@ router.delete('/:id', authenticateJWT, teamController.deleteTeam);
 // Route to get teams by hackathon ID
 router.get('/hackathon/:hackathonId', authenticateJWT, teamController.getTeamsByHackathonId);
 
-// POST request to create a new team along with competitors
-router.post('/', teamController.createTeamWithCompetitors);
-
 module.exports = router;

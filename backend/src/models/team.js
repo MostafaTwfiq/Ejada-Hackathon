@@ -4,7 +4,8 @@ const Competitor = require('./competitor.js');
 class Team {
 
   // Create a new team
-  static async create(teamData) {
+  static async create(teamName, hackathonId, competitors) {
+    let connection;
     try {
       // Assuming db.getConnection() establishes a new connection
       connection = await pool.getConnection();
