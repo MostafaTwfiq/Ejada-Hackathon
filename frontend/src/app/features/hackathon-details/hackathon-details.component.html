@@ -98,11 +98,11 @@
     <div class="container mt-4">
         <div class="mb-3">
             <label class="label">{{ 'registeredTeams' | translate }}</label>
-            <div class="tag-list">
-                <div class="tag" *ngFor="let team of teams">
+            <ul>
+                <li *ngFor="let team of teams">
                     {{ team.team_name }}
-                </div>
-            </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

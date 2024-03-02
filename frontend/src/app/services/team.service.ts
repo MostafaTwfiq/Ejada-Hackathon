@@ -43,7 +43,7 @@ export class TeamService {
         return this.http.post(url, newTeam);
     }
     getTeamsByHackathonId(hackathonId?: number): Observable<Team[]> {
-        const url = `${this.apiUrl}/teams?hackathon_id=${hackathonId}`;
+        const url = `${this.apiUrl}/hackathon/${hackathonId}`;
         return this.http.get<Team[]>(url);
     }
 

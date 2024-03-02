@@ -11,6 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Challenge } from 'src/app/models/challenge.model';
 import { TeamService } from 'src/app/services/team.service';
 import { Team } from 'src/app/models/team.model';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-hackathon-details',
@@ -41,6 +42,7 @@ export class HackathonDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authService.currentUserValue;
     console.log(this.currentUser?.role)
+    
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id == undefined) {
@@ -48,23 +50,39 @@ export class HackathonDetailsComponent implements OnInit {
         this.isAddMode = true;
       } else if (id) {
         this.loadHackathonDetails(+id);
+        this.teamService.getTeamsByHackathonId(+id).subscribe(
+            (response: any) => {
+             this.teams = response;
+              console.log(response)
+              console.log(this.teams)
+            },
+            (error) => {
+              console.error('Failed to get teams:', error);
+            }
+          );
       }
     });
   
-    this.teamService.getTeamsByHackathonId(this.hackathon.hackathon_id)
-      .subscribe(
-        (teams: Team[]) => {
-          this.teams = teams;
-          console.log()
-        },
-        (error) => {
-          console.error('Failed to get teams:', error);
-        }
-      );
+    
   }
 
 
   loadHackathonDetails(id: number): void {
+    // const combinedRqsObservable: Observable<any> = forkJoin<any>([
+    //   this.hackathonService.getHackathonById(id),
+    //   this.teamService.getTeamsByHackathonId(id)
+    // ]);
+    // combinedRqsObservable.subscribe(([data, teams, regions]) => {
+    //   this.hackathon = data.hackathon_details;
+    //   this.challenges = data.challenges;
+    //   this.maxSize = this.hackathon.max_team_size == null ? 0 : this.hackathon.max_team_size;
+    //   this.isEditMode = false; // Ensure we're in view mode after loading details
+
+    //   this.teams = teams;
+    //   console.log(teams)
+
+    // });
+
     this.hackathonService.getHackathonById(id).subscribe({
       next: (data: any) => {
         this.hackathon = data.hackathon_details;
