@@ -1,8 +1,11 @@
 {
+    "isRTL": false,
     "teamRegistration": {
         "add": {
             "success": "Team added successfully.",
-            "failure": "Team addition failed: {{error}}"
+            "failure": "Team addition failed: {{error}}",
+            "sizeLimit": "Must add at least one member",
+            "emptyName": "You should choose name for your team"
         }
     },
     "hackathonList": {
@@ -53,9 +56,22 @@
     "label_registerMessage": " Don't have an account?",
     "label_loginMessage": "Already have an account? ",
     "hackathon": {
-        "error": "Error fetching hackathon details"
+        "error": "Error fetching hackathon details",
+        "name": "hackathon name"
     },
     "label_logout": "Logout",
     "label_userProfile": "User Profile",
-    "label_add": "add"
+    "label_add": "add",
+    "title_teamRegistrationForm": "Team Registration Form",
+    "team": {
+        "name": "اسم الفريق",
+        "members": "Team Members",
+        "add": "Add member",
+        "register": "Register Team"
+    },
+    "competitor": {"competitor_id": "Competitor ID",
+    "name": "Name",
+    "email": "Email",
+    "mobile": "Mobile",
+    "title": "Title"}
 }

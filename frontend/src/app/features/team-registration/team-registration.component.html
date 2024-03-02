@@ -1,40 +1,61 @@
-<div class="container mt-4">
-    <h2>Team Registration Form</h2>
+<div class="container mt-4 card" [class.text-left]="false" [class.text-right]="true" >
+    <h2 class="title">{{"title_teamRegistrationForm" | translate}}</h2>
     <form (ngSubmit)="submitTeamRegistrationForm()" #teamForm="ngForm">
       <div class="form-group">
-        <label for="teamName">Team Name</label>
+        <label class="label" for="teamName">{{"team.name" | translate }}</label>
         <input type="text" class="form-control" id="teamName" name="teamName" [(ngModel)]="teamName" required>
       </div>
       <div class="form-group">
-        <label for="hackathon">Hackathon</label>
-        <input type="text" class="form-control" id="hackathon" name="hackathon" [(ngModel)]="selectedHackathon" required disabled readonly>
+        <label class="label" for="hackathon">{{"hackathon.name" | translate }}</label>
+        <input type="text" class="form-control" id="hackathon" name="hackathon" [(ngModel)]="hackathon.name" required disabled readonly>
       </div>
 
       <div class="form-group">
-        <label>Team Members</label>
+        <label  class="label" >{{"team.members" | translate }}</label>
         <div *ngFor="let member of teamMembers; let i = index">
           <div class="row mb-2">
             <div class="col">
-              <input type="text" class="form-control" placeholder="Name" [(ngModel)]="member.name" name="memberName{{i}}" required>
+              <input type="text" class="form-control" [placeholder]="'competitor.name' | translate" [(ngModel)]="member.name"
+                name="memberName{{i}}" required>
             </div>
             <div class="col">
-              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="member.email" name="memberEmail{{i}}" required>
+              <input type="email" class="form-control" [placeholder]="'competitor.email' | translate" [(ngModel)]="member.email"
+                name="memberEmail{{i}}" required>
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Mobile" [(ngModel)]="member.mobile" name="memberMobile{{i}}">
+              <input type="text" class="form-control" [placeholder]="'competitor.mobile' | translate" [(ngModel)]="member.mobile"
+                name="memberMobile{{i}}">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="Title" [(ngModel)]="member.title" name="memberTitle{{i}}">
+              <input type="text" class="form-control" [placeholder]="'competitor.title' | translate" [(ngModel)]="member.title"
+                name="memberTitle{{i}}">
             </div>
             <div class="col">
-              <button type="button" class="btn btn-danger" *ngIf="teamMembers.length > 1" (click)="removeMember(i)">Remove Member</button>
+              <input type="text" class="form-control" [placeholder]="'competitor.competitor_id' | translate"
+                [(ngModel)]="member.competitor_id" name="memberTitle{{i}}">
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-danger" *ngIf="teamMembers.length > 1" (click)="removeMember(i)">
+                {{ 'REMOVE_MEMBER' | translate }}
+              </button>
             </div>
           </div>
         </div>
+        <div>
+          <button type="button" class="btn btn-primary m-2" (click)="addMember()">{{"team.add" | translate }}</button>
+        </div>
+      </div>
+      <div class="container m-2">
+        <p class="label">{{ "hackathonDetails.challenges" | translate }}</p>
+        <div *ngFor="let challenge of hackathon.challenges">
+          <label>
+            <input type="radio" name="challenge" [value]="challenge.challenge_id" [(ngModel)]="challengeId">
+            {{ challenge.title }}
+          </label>
+        </div>
       </div>
       
-      <button type="button" class="btn btn-primary mb-2" (click)="addMember()">Add Member</button>
       
-      <button type="submit" class="btn btn-success">Register Team</button>
+      <button type="submit" class="btn btn-success">{{"team.register" | translate }}</button>
     </form>
   </div>

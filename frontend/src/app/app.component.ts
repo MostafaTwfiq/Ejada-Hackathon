@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from './services/authentication.service';
 import { Router } from '@angular/router';
@@ -11,17 +11,18 @@ import { Router } from '@angular/router';
 export class AppComponent {
   isRtl: boolean = true;
   currentLanguage: string = 'ar';
-  constructor(private translate: TranslateService, private authService: AuthenticationService,
+  constructor(private translate: TranslateService, private elementRef: ElementRef, private renderer: Renderer2, 
+    private authService: AuthenticationService,
     private router: Router) {
     translate.setDefaultLang('ar');
     this.setLanguageDirection('ar');
     this.translate.onLangChange.subscribe((event) => {
+      console.log("here")
       this.setLanguageDirection(event.lang);
     });
-  }
+    }
 
   setLanguageDirection(lang: string) {
-    
     const dir = lang === 'ar' ? 'rtl' : 'ltr';
     console.log(dir)
     document.documentElement.setAttribute('dir', dir);

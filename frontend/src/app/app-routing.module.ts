@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'hackathons', component: HackathonListComponent, canActivate: [AuthGuard] },
   { path: 'hackathons/add', component: HackathonDetailsComponent, canActivate: [AuthGuard] }, // Add view route
   { path: 'hackathons/:id', component: HackathonDetailsComponent, canActivate: [AuthGuard] }, // Detail view route
-  { path: 'teams/add/:id', component: TeamRegistrationComponent, canActivate: [AuthGuard] }, // Add team route
+  { path: 'teams/add/:hackathon_id', component: TeamRegistrationComponent, canActivate: [AuthGuard] }, // Add team route
   { path: '**', redirectTo: 'login' }
   // Other routes
 ];

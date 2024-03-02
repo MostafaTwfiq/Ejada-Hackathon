@@ -1,8 +1,11 @@
 {
+    "isRTL": true,
     "teamRegistration": {
         "add": {
             "success": "تم إضافة الفريق بنجاح.",
-            "failure": "فشل في إضافة افريق: {{error}}"
+            "failure": "فشل في إضافة افريق: {{error}}",
+            "sizeLimit": "يجب اضافة مشترك واحد على الاقل",
+            "emptyName": "يجب اختيار اسم للفريق"
         }
     },
     "hackathonList": {
@@ -37,7 +40,6 @@
             "failure": "فشل في تحديث الهاكاثون: {{error}}"
         },
         "newChallengesPlaceholder": "أدخل التحديات الجديدة مفصولة بفواصل"
-        
     },
     "label_hackathonManagementSystem": "نظام إدارة الهاكاثونات",
     "title_language": "اللغة",
@@ -61,10 +63,24 @@
     "label_registerMessage": "لا تمتلك حساب؟",
     "label_loginMessage": "هل تمتلك حسابًا؟",
     "hackathon": {
-        "error": "فشل في استرجاع بيانات الهاكاثون: {{error}}"
+        "error": "فشل في استرجاع بيانات الهاكاثون: {{error}}",
+        "name": " اسم الهاكاثون"
     },
     "label_logout": "تسجيل الخروج",
     "label_userProfile": "الملف الشخصي",
-    "label_add": "إضافة"
-    
+    "label_add": "إضافة",
+    "title_teamRegistrationForm": "التسجيل في الهاكاثون",
+    "team": {
+        "name": "اسم الفريق",
+        "members": "أعضاء الفريق",
+        "add": "إضافة عضو",
+        "register": "تسجيل الفريق"
+    },
+    "competitor": {
+        "competitor_id": "رقم المتنافس",
+        "name": "الاسم",
+        "email": "البريد الإلكتروني",
+        "mobile": "الهاتف المحمول",
+        "title": "العنوان"
+    }
 }

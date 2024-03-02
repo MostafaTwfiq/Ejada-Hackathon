@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './features/interceptors/auth.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { DatePipe } from '@angular/common';
+import { RtlDirective } from 'src/directives/rtl.directive';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -27,7 +28,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HackathonDetailsComponent,
     TeamRegistrationComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    RtlDirective
   ],
   imports: [
     BrowserModule,
