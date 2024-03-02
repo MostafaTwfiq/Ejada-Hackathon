@@ -1,21 +1,55 @@
 const pool = require('../config/database'); 
+const Competitor = require('./competitor.js');
 
 class Team {
 
   // Create a new team
   static async create(teamData) {
     try {
-      const query = `
-        INSERT INTO Team (team_name, hackathon_id)
-        VALUES (?, ?)
-      `;
-      const { team_name, hackathon_id } = teamData;
-      const [result] = await pool.execute(query, [team_name, hackathon_id]);
-      return result;
-    } catch (error) {
-      throw error;
-    }
+      // Assuming db.getConnection() establishes a new connection
+      connection = await pool.getConnection();
+      await connection.beginTransaction();
+
+      // Create the team
+      let [teamResult] = await connection.execute(
+          'INSERT INTO Team (team_name, hackathon_id) VALUES (?, ?)',
+          [teamName, hackathonId]
+      );
+      const teamId = teamResult.insertId;
+
+      // Iterate over competitors and create or link them
+      for (const competitor of competitors) {
+          let [existing] = await connection.execute(
+              'SELECT competitor_id FROM Competitor WHERE email = ? LIMIT 1',
+              [competitor.email]
+          );
+
+          let competitorId;
+          if (existing.length > 0) {
+              competitorId = existing[0].competitor_id; // Assuming competitor_id is the column name
+          } else {
+              let createdCompetitor = Competitor.create(competitor)
+              competitorId = createdCompetitor.insertId;
+          }
+
+          // Link competitor to the team in Competitor_Team table
+          await connection.execute(
+              'INSERT INTO Competitor_Team (competitor_id, team_id) VALUES (?, ?)',
+              [competitorId, teamId]
+          );
+      }
+
+      await connection.commit();
+      return { teamId }; // Return the created team ID
+  } catch (error) {
+      if (connection) await connection.rollback();
+      throw error; // Rethrow after rolling back
+  } finally {
+      if (connection) await connection.release();
   }
+}
+
+
 
   // Get team by ID
   static async getById(teamId) {
@@ -65,6 +99,7 @@ class Team {
       throw error;
     }
   }
+
 }
 
 module.exports = Team;

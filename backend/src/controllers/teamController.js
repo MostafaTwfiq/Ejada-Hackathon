@@ -68,4 +68,15 @@ const teamController = {
   }
 };
 
+exports.createTeamWithCompetitors = async (req, res) => {
+  try {
+      const { teamName, hackathonId, competitors } = req.body;
+      const newTeam = await teamService.createTeamWithCompetitors(teamName, hackathonId, competitors);
+      res.status(201).json(newTeam);
+  } catch (error) {
+      console.error("Error creating team with competitors:", error);
+      res.status(500).json({ message: "Failed to create team" });
+  }
+};
+
 module.exports = teamController;

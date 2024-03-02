@@ -2,9 +2,9 @@ const Team = require('../models/team');
 
 const teamService = {
   // Create a new team
-  createTeam: async (teamData) => {
+  createTeam: async (teamName, hackathonId, competitors) => {
     return new Promise((resolve, reject) => {
-      Team.create(teamData, (error, results) => {
+      Team.create(teamName, hackathonId, competitors, (error, results) => {
         if (error) {
           reject(error);
         } else {
