@@ -35,6 +35,7 @@ export class TeamService {
         const newTeam = {
             team_name: team.team_name,
             hackathon_id: team.hackathon_id,
+            challenge_id: team.challenge_id
             compatitors: competitors
         }
 
