@@ -103,4 +103,8 @@ export class HackathonDetailsComponent implements OnInit {
       this.newChallenges = ''; // Clear the input field after adding the challenges
     }
   }
+
+  register(){
+    this.router.navigate(['/teams/add/', this.hackathon.hackathon_id]);
+  }
 }

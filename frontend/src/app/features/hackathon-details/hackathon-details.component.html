@@ -22,6 +22,8 @@
             </div>
         </div>
         <button *ngIf="currentUser && currentUser.role==RoleEnum.ADMIN" class="btn btn-primary" (click)="enableEditMode()">{{ 'hackathonDetails.edit_label' | translate }}</button>
+        <button *ngIf="currentUser && currentUser.role==RoleEnum.NORMAL" class="btn btn-primary" (click)="register()">{{
+            'register' | translate }}</button>
     </div>
 
     <!-- Edit/Add Mode -->

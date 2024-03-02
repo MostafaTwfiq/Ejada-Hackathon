@@ -6,13 +6,14 @@ import { LoginComponent } from './features/login/login.component';
 import { SignupComponent } from './features/signup/signup.component';
 import { AuthGuard } from './guards/auth.guard';
 import { TeamRegistrationComponent } from './features/team-registration/team-registration.component';
+import { RoleGuard } from './guards/role.guard';
 // Import other components
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'hackathons', component: HackathonListComponent, canActivate: [AuthGuard] },
-  { path: 'hackathons/add', component: HackathonDetailsComponent, canActivate: [AuthGuard] }, // Add view route
+  { path: 'hackathons/add', component: HackathonDetailsComponent, canActivate: [AuthGuard, RoleGuard] }, // Add view route
   { path: 'hackathons/:id', component: HackathonDetailsComponent, canActivate: [AuthGuard] }, // Detail view route
   { path: 'teams/add/:hackathon_id', component: TeamRegistrationComponent, canActivate: [AuthGuard] }, // Add team route
   { path: '**', redirectTo: 'login' }

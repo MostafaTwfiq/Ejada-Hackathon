@@ -73,5 +73,6 @@
     "name": "Name",
     "email": "Email",
     "mobile": "Mobile",
-    "title": "Title"}
+    "title": "Title"},
+    "register": "Register"
 }

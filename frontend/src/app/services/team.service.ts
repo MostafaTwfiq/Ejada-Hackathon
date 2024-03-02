@@ -37,8 +37,8 @@ export class TeamService {
             hackathon_id: team.hackathon_id,
             compatitors: competitors
         }
-
-        const url = `${this.apiUrl}/${team.hackathon_id}`;
+        
+        const url = `${this.apiUrl}`;
         return this.http.post(url, newTeam);
     }
 
