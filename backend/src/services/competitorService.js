@@ -3,54 +3,26 @@ const Competitor = require('../models/competitor');
 const competitorService = {
   // Create a new competitor
   createCompetitor: async (competitorData) => {
-    return new Promise((resolve, reject) => {
-      Competitor.create(competitorData, (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(results);
-        }
-      });
-    });
+    // Directly await the promise returned by Competitor.create
+    return await Competitor.create(competitorData);
   },
 
   // Get a competitor by ID
   getCompetitorById: async (competitorId) => {
-    return new Promise((resolve, reject) => {
-      Competitor.getById(competitorId, (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(results);
-        }
-      });
-    });
+    // Directly await the promise returned by Competitor.getById
+    return await Competitor.getById(competitorId);
   },
 
   // Update a competitor
   updateCompetitor: async (competitorId, competitorData) => {
-    return new Promise((resolve, reject) => {
-      Competitor.update(competitorId, competitorData, (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(results);
-        }
-      });
-    });
+    // Directly await the promise returned by Competitor.update
+    return await Competitor.update(competitorId, competitorData);
   },
 
   // Delete a competitor
   deleteCompetitor: async (competitorId) => {
-    return new Promise((resolve, reject) => {
-      Competitor.delete(competitorId, (error, results) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(results);
-        }
-      });
-    });
+    // Directly await the promise returned by Competitor.delete
+    return await Competitor.delete(competitorId);
   },
 };
 
