@@ -1,0 +1,352 @@
+{
+    "info": {
+        "_postman_id": "unique_id",
+        "name": "Hackathon Management API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Register User",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"username\": \"testUser\",\n    \"password\": \"password123\",\n    \"role\": \"Normal\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:3000/users/register",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "users",
+                        "register"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Login User",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"username\": \"testUser\",\n    \"password\": \"password123\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:3000/users/login",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "users",
+                        "login"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Add Hackathon",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer <your_token_here>"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"New Hackathon\",\n    \"theme\": \"Innovation\",\n    \"registration_start_date\": \"2023-04-01\",\n  \"registration_end_date\": \"2023-04-01\",\n  \"event_date\": \"2023-05-15\",\n    \"max_team_size\": 4,\n    \"max_num_teams\": 20\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:3000/hackathons",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "hackathons"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Update User",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer <your_token_here>"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"username\": \"updatedUser\",\n    \"password\": \"newPassword123\",\n    \"role\": \"Normal\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:3000/users/<user_id>",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "users",
+                        "<user_id>"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Delete User",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer <your_token_here>"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:3000/users/<user_id>",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "users",
+                        "<user_id>"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get All Hackathons",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/hackathons",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "hackathons"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Update Hackathon",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer <your_token_here>"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Updated Hackathon\",\n    \"theme\": \"New Theme\",\n    \"registration_start_date\": \"2023-05-01\",\n  \"registration_end_date\": \"2023-05-01\",\n  \"event_date\": \"2023-06-15\",\n    \"max_team_size\": 5,\n    \"max_num_teams\": 25\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:3000/hackathons/<hackathon_id>",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "hackathons",
+                        "<hackathon_id>"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Delete Hackathon",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer <your_token_here>"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:3000/hackathons/<hackathon_id>",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "hackathons",
+                        "<hackathon_id>"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Create Team",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer <your_token_here>"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"team_name\": \"Awesome Team\",\n    \"hackathon_id\": 1\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:3000/teams",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "teams"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Update Team",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer <your_token_here>"
+                    },
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"team_name\": \"Updated Team Name\"\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:3000/teams/<team_id>",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "teams",
+                        "<team_id>"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Delete Team",
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer <your_token_here>"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:3000/teams/<team_id>",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "teams",
+                        "<team_id>"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get Hackathon By ID With Challenges",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/hackathons/<hackathon_id>/challenges",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "hackathons",
+                        "<hackathon_id>",
+                        "challenges"
+                    ]
+                }
+            }
+        }
+    ]
+}
