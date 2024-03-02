@@ -1,9 +1,15 @@
 const express = require('express');
 const app = express();
 const database = require('./config/database');
+const teamRoutes = require('./routes/teamRoutes');
 
 // Use the database connection pool in your application
 app.set('database', database);
+
+app.use(express.json()); // Middleware to parse JSON bodies
+
+// Use teamRoutes for any requests that start with '/teams'
+app.use('/teams', teamRoutes);
 
 // Other app configurations and routes...
 
