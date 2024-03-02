@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../config/config');
 
 const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -6,7 +7,7 @@ const authenticateJWT = (req, res, next) => {
   if (authHeader) {
     const token = authHeader.split(' ')[1];
     
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET || JWT_SECRET, (err, user) => {
       if (err) {
         return res.sendStatus(403);
       }

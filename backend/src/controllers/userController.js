@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = require('../config/config');
 
 const userController = {
   // Register a new user
@@ -42,7 +43,7 @@ const userController = {
       // Generate a JWT token
       const token = jwt.sign(
         { userId: user.user_id, username: user.username },
-        process.env.JWT_SECRET,
+        process.env.JWT_SECRET || JWT_SECRET,
         { expiresIn: '1h' }
       );
       
