@@ -7,12 +7,12 @@ const teamRoutes = require('./routes/teamRoutes');
 
 // Use the database connection pool in your application
 app.set('database', database);
+
 // Middleware to parse JSON bodies
 app.use(express.json());
+
 // Use hackathonRoutes for any request that starts with '/hackathons'
 app.use('/hackathons', hackathonRoutes);
-
-app.use(express.json()); // Middleware to parse JSON bodies
 
 // Use teamRoutes for any requests that start with '/teams'
 app.use('/teams', teamRoutes);
