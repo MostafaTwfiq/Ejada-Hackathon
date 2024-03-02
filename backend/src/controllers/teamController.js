@@ -4,9 +4,9 @@ const teamController = {
   // Create a new team
   createTeam: async (req, res) => {
     try {
-      const {team_name, hackathon_id, compatitors} = req.body;
+      const {team_name, hackathon_id, challenge_id, compatitors} = req.body;
 
-      const result = await teamService.createTeam(team_name, hackathon_id, compatitors);
+      const result = await teamService.createTeam(team_name, hackathon_id, challenge_id, compatitors);
       res.status(201).json({ message: "Team created successfully", data: result });
     } catch (error) {
       res.status(500).json({ message: "Failed to create team", error: error.message });
