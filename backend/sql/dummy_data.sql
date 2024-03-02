@@ -13,12 +13,19 @@ VALUES
 (2, 'John Smith', 'john.smith@example.com', '555-0102', 'Software Developer'),
 (3, 'Alex Johnson', 'alex.johnson@example.com', '555-0103', 'Product Manager');
 
--- Team Table
-INSERT INTO Team (team_name, hackathon_id)
+-- Challenge Table
+INSERT INTO Challenge (title)
 VALUES
-('Innovators', 1),
-('Health Gurus', 2),
-('AI Mavericks', 3);
+('Clean Tech Solutions'),
+('Remote Healthcare'),
+('AI Ethics');
+
+-- Team Table
+INSERT INTO Team (team_name, hackathon_id, challenge_id)
+VALUES
+('Innovators', 1, 1),
+('Health Gurus', 2, 2),
+('AI Mavericks', 3, 3);
 
 
 -- Competitor_Team Table
@@ -27,14 +34,6 @@ VALUES
 (1, 1),
 (2, 2),
 (3, 3);
-
-
--- Challenge Table
-INSERT INTO Challenge (title)
-VALUES
-('Clean Tech Solutions'),
-('Remote Healthcare'),
-('AI Ethics');
 
 
 -- Hackathon_Challenge Table

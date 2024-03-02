@@ -1,10 +1,10 @@
 const pool = require('../config/database'); 
-const Competitor = require('./competitor.js');
+const competitorService = require('../services/competitorService');
 
 class Team {
 
   // Create a new team
-  static async create(teamName, hackathonId, competitors) {
+  static async create(teamName, hackathonId, challenge_id, competitors) {
     let connection;
     try {
       // Assuming db.getConnection() establishes a new connection
@@ -13,8 +13,8 @@ class Team {
 
       // Create the team
       let [teamResult] = await connection.execute(
-          'INSERT INTO Team (team_name, hackathon_id) VALUES (?, ?)',
-          [teamName, hackathonId]
+          'INSERT INTO Team (team_name, hackathon_id, challenge_id) VALUES (?, ?, ?)',
+          [teamName, hackathonId, challenge_id]
       );
       const teamId = teamResult.insertId;
 
@@ -29,7 +29,7 @@ class Team {
           if (existing.length > 0) {
               competitorId = existing[0].competitor_id; // Assuming competitor_id is the column name
           } else {
-              let createdCompetitor = Competitor.create(competitor)
+              let createdCompetitor = competitorService.createCompetitor(competitor)
               competitorId = createdCompetitor.insertId;
           }
 
