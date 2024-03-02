@@ -22,7 +22,7 @@
             </div>
         </div>
         <button *ngIf="currentUser && currentUser.role==RoleEnum.ADMIN" class="btn btn-primary" (click)="enableEditMode()">{{ 'hackathonDetails.edit_label' | translate }}</button>
-        <button *ngIf="currentUser && currentUser.role==RoleEnum.NORMAL" class="btn btn-primary" (click)="register()">{{
+        <button *ngIf="currentUser && currentUser.role==RoleEnum.NORMAL && this.teams.length < maxSize" class="btn btn-primary" (click)="register()">{{
             'register' | translate }}</button>
     </div>
 
@@ -94,5 +94,15 @@
             <button type="button" class="btn btn-secondary" (click)="cancel()">{{ 'hackathonDetails.cancel' | translate
                 }}</button>
         </form>
+    </div>
+    <div class="container mt-4">
+        <div class="mb-3">
+            <label class="label">{{ 'registeredTeams' | translate }}</label>
+            <div class="tag-list">
+                <div class="tag" *ngFor="let team of teams">
+                    {{ team.team_name }}
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -42,6 +42,11 @@ export class TeamService {
         const url = `${this.apiUrl}`;
         return this.http.post(url, newTeam);
     }
+    getTeamsByHackathonId(hackathonId?: number): Observable<Team[]> {
+        const url = `${this.apiUrl}/teams?hackathon_id=${hackathonId}`;
+        return this.http.get<Team[]>(url);
+    }
+
 
     // updateTeam(hackathon_id?: number, hackathon?: Hackathon): Observable<any> {
     //     // let oldHackathon = this.dummyHackathons.find(hackathon => hackathon.hackathon_id === id);

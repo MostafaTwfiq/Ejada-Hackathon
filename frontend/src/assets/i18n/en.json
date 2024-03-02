@@ -74,5 +74,6 @@
     "email": "Email",
     "mobile": "Mobile",
     "title": "Title"},
-    "register": "Register"
+    "register": "Register",
+    "registeredTeams": "Registered Teams"
 }

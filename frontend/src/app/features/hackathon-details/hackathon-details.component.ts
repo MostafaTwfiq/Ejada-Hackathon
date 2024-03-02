@@ -9,6 +9,8 @@ import { User } from 'src/app/models/user.model';
 import { RoleEnum } from 'src/enums/role.enum';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Challenge } from 'src/app/models/challenge.model';
+import { TeamService } from 'src/app/services/team.service';
+import { Team } from 'src/app/models/team.model';
 
 @Component({
   selector: 'app-hackathon-details',
@@ -24,10 +26,13 @@ export class HackathonDetailsComponent implements OnInit {
   currentUser?: User | null;
   RoleEnum = RoleEnum;
   newChallenges: string = "";
+  teams: Team[] = [];
+  maxSize: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private teamService: TeamService,
     private translate: TranslateService,
     private hackathonService: HackathonService,
     private authService: AuthenticationService
@@ -45,13 +50,26 @@ export class HackathonDetailsComponent implements OnInit {
         this.loadHackathonDetails(+id);
       }
     });
+  
+    this.teamService.getTeamsByHackathonId(this.hackathon.hackathon_id)
+      .subscribe(
+        (teams: Team[]) => {
+          this.teams = teams;
+          console.log()
+        },
+        (error) => {
+          console.error('Failed to get teams:', error);
+        }
+      );
   }
+
 
   loadHackathonDetails(id: number): void {
     this.hackathonService.getHackathonById(id).subscribe({
       next: (data: any) => {
         this.hackathon = data.hackathon_details;
         this.challenges = data.challenges;
+        this.maxSize = this.hackathon.max_team_size == null ? 0 : this.hackathon.max_team_size;
         this.isEditMode = false; // Ensure we're in view mode after loading details
       },
       error: (error: HttpErrorResponse) => {
@@ -69,6 +87,7 @@ export class HackathonDetailsComponent implements OnInit {
 
   saveHackathon(): void {
     if (this.isAddMode) {
+      this.hackathon.challenges = this.challenges
       this.hackathonService.createHackathon(this.hackathon).subscribe({
         next: () => {
           this.translate.get('hackathonDetails.add.success').subscribe((message: string) => alert(message)); 
