@@ -1,0 +1,31 @@
+<div class="container m-4 card text-center" >
+  <h1 class="text-center mb-4 title">{{ 'hackathonList.title' | translate }}</h1>
+  <div class="row">
+    <!-- New card for adding a hackathon -->
+    <div class="col-md-4">
+      <div class="card mb-3" style="cursor: pointer;" (click)="navigateToAddHackathon()">
+        <div class="card-body d-flex justify-content-center align-items-center" style="height: 200px;">
+          <button class="btn btn-success btn-lg">+</button>
+        </div>
+      </div>
+    </div>
+    <!-- Existing hackathon cards -->
+    <div class="col-md-4" *ngFor="let hackathon of hackathons">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h4 class=" label">{{ hackathon.name }}</h4>
+          <p class="card-text"><label class="label ml-2">{{ 'hackathonList.theme' | translate }}: </label> {{ hackathon.theme }}</p>
+          <p class="card-text"><label class="label">{{ 'hackathonList.eventDate' | translate }}:</label> {{ hackathon.event_date | date }}</p>
+          <a [routerLink]="['/hackathons', hackathon.hackathon_id]" class="btn btn-primary">{{
+            'hackathonList.showDetails' | translate }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Template for no hackathons -->
+  <ng-template #noHackathonsTemplate>
+    <div class="alert alert-info" role="alert">
+      {{ 'hackathonList.noHackathons' | translate }}
+    </div>
+  </ng-template>
+</div>

@@ -26,7 +26,7 @@ class Hackathon {
     const { name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams } = hackathonData;
     try {
       const [result] = await db.execute(
-        'INSERT INTO Hackathon (name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams) VALUES (?, ?, ?, ?, ?, ?)',
+        'INSERT INTO Hackathon (name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams) VALUES (?, ?, ?, ?, ?, ?, ?)',
         [name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams]
       );
       return result;

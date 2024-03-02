@@ -9,8 +9,8 @@ const registerUser = async (userData) => {
   if (existingUser) {
     throw new Error('User already exists');
   }
-  const hashedPassword = await bcrypt.hash(password, 12);
-  const newUser = await User.createUser({ username, hashedPassword, role });
+  
+  const newUser = await User.createUser({ username, password, role });
   return newUser;
 };
 

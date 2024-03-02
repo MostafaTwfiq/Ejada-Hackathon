@@ -1,0 +1,41 @@
+{
+    "hackathonList": {
+        "title": "Hackathons",
+        "showDetails": "Show Details",
+        "theme": "Theme",
+        "eventDate": "Event Date",
+        "noHackathons": "No hackathons available at the moment."
+    },
+    "hackathonDetails": {
+        "title": "Hackathon Details",
+        "theme": "Theme",
+        "registrationDateRange": "Registration Date Range",
+        "eventDate": "Event Date",
+        "maxTeamSize": "Maximum Team Size",
+        "maxNumTeams": "Maximum Number of Teams",
+        "backToList": "Back to List",
+        "addTitle": "Add New Hackathon",
+        "detailsTitle": "Hackathon Details",
+        "name": "Name",
+        "edit": "Edit",
+        "save": "Save",
+        "cancel": "Cancel"
+    },
+    "label_hackathonManagementSystem": "Hackathon Management System",
+    "title_language": "language",
+    "login": {
+        "title": "Login",
+        "username": "Username",
+        "password": "Password",
+        "loginButton": "Login"
+    },
+    "signup": {
+        "title": "Signup",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "signupButton": "Signup"
+    },
+    "label_registerMessage": " Don't have an account?",
+    "label_loginMessage": "Already have an account? "
+}

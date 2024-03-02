@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: 'Readex Pro', sans-serif;
+}
+
+[dir="rtl"] body,
+[dir="rtl"] h1,
+[dir="rtl"] p {
+    text-align: right;
+    /* Other RTL adjustments */
+}
+
+.label {
+    color: #001081;
+    font-weight: bold;
+    /* Lighter weight for labels */
+}
+
+/* Titles */
+.title {
+    color: #001081;
+    font-weight: bolder;
+    /* Bolder weight for titles */
+}
+
+/* Global background */
+body {
+    background-image: url('/assets/resources/Desktop Background- Light Version.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.auth-link {
+    color: #007bff;
+    /* Example color - primary blue */
+    text-decoration: underline;
+}
+
+.auth-link:hover {
+    color: #0056b3;
+    /* Darker blue on hover */
+    text-decoration: none;
+    /* Optional: removes underline on hover */
+}

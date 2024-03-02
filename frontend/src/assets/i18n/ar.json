@@ -1,0 +1,42 @@
+{
+    "hackathonList": {
+        "title": "الهاكاثونات",
+        "showDetails": "عرض التفاصيل",
+        "theme": "الموضوع",
+        "eventDate": "تاريخ الحدث",
+        "noHackathons": "لا توجد هاكاثونات متاحة في الوقت الحالي."
+    },
+    "hackathonDetails": {
+        "title": "تفاصيل الهاكاثون",
+        "theme": "الموضوع",
+        "registrationDateRange": "نطاق تاريخ التسجيل",
+        "eventDate": "تاريخ الحدث",
+        "maxTeamSize": "الحد الأقصى لحجم الفريق",
+        "maxNumTeams": "الحد الأقصى لعدد الفرق",
+        "backToList": "العودة إلى القائمة",
+        "addTitle": "إضافة هاكاثون جديد",
+        "detailsTitle": "تفاصيل الهاكاثون",
+        "name": "الاسم",
+        "edit": "تعديل",
+        "save": "حفظ",
+        "cancel": "إلغاء"
+    },
+    "label_hackathonManagementSystem": "نظام إدارة الهاكاثونات",
+    "title_language": "اللغة",
+    "login": {
+        "title": "تسجيل الدخول",
+        "username": "اسم المستخدم",
+        "password": "كلمة المرور",
+        "loginButton": "تسجيل الدخول"
+    },
+    "signup": {
+        "title": "إنشاء حساب",
+        "username": "اسم المستخدم",
+        "email": "البريد الإلكتروني",
+        "password": "كلمة المرور",
+        "signupButton": "إنشاء الحساب"
+    },
+    "label_registerMessage": "لا تمتلك حساب؟",
+    "label_loginMessage": "هل تمتلك حسابًا؟"
+    
+}
