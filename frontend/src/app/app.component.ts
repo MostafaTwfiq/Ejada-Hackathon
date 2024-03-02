@@ -19,7 +19,6 @@ export class AppComponent {
 
   setLanguageDirection(lang: string) {
     const dir = lang === 'ar' ? 'rtl' : 'ltr';
-    console.log(dir)
     document.documentElement.setAttribute('dir', dir);
   }
   

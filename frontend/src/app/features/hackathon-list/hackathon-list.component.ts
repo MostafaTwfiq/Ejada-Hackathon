@@ -29,7 +29,6 @@ export class HackathonListComponent implements OnInit {
     this.hackathonService.getHackathons()
       .subscribe((hackathons) => {
          this.hackathons = hackathons;
-         console.log(hackathons)
       });
   }
 
