@@ -144,4 +144,8 @@ export class HackathonDetailsComponent implements OnInit {
   register(){
     this.router.navigate(['/teams/add/', this.hackathon.hackathon_id]);
   }
+
+  viewCompetitors(teamId: number) {
+    this.router.navigate(['/team-details', teamId]); // Replace '/competitors' with the actual route path for the competitors component
+  }
 }

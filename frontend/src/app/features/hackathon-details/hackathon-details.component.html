@@ -101,6 +101,7 @@
             <ul>
                 <li *ngFor="let team of teams">
                     {{ team.team_name }}
+                    <button class="btn btn-secondary m-5"  (click)="viewCompetitors(team.team_id!=null? team.team_id: 0)">View Competitors</button>
                 </li>
             </ul>
         </div>

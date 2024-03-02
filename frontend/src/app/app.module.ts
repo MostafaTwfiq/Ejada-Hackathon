@@ -16,6 +16,7 @@ import { AuthInterceptor } from './features/interceptors/auth.interceptor';
 import { AuthGuard } from './guards/auth.guard';
 import { DatePipe } from '@angular/common';
 import { RtlDirective } from 'src/directives/rtl.directive';
+import { TeamDetailsComponent } from './features/team-details/team-details.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -29,7 +30,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TeamRegistrationComponent,
     LoginComponent,
     SignupComponent,
-    RtlDirective
+    RtlDirective,
+    TeamDetailsComponent
   ],
   imports: [
     BrowserModule,
