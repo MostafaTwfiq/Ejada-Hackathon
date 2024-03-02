@@ -66,17 +66,22 @@ const teamController = {
     } catch (error) {
       res.status(500).json({ message: "Failed to retrieve teams", error: error.message });
     }
-  }
-};
+  },
 
-exports.createTeamWithCompetitors = async (req, res) => {
-  try {
-      const { teamName, hackathonId, competitors } = req.body;
-      const newTeam = await teamService.createTeamWithCompetitors(teamName, hackathonId, competitors);
-      res.status(201).json(newTeam);
-  } catch (error) {
-      console.error("Error creating team with competitors:", error);
-      res.status(500).json({ message: "Failed to create team" });
+  getCompetitorsByTeamId: async (req, res) => {
+    try {
+      const teamId = req.params.id;
+
+      // Check if the authenticated user they're an admin
+      if (req.user.role !== 'Admin') {
+        return res.status(403).json({ message: 'Forbidden' });
+      }
+      
+      const competitors = await teamService.getCompetitorsByTeamId(teamId);
+      res.status(200).json(competitors);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
   }
 };
 

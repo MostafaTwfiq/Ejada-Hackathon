@@ -29,6 +29,10 @@ const teamService = {
   getTeamsByHackathonId: async (hackathonId) => {
     // Assuming Team.getByHackathonId now returns a promise
     return await Team.getByHackathonId(hackathonId);
+  },
+
+  getCompetitorsByTeamId: async (teamId) => {
+    return await Team.getCompetitorsByTeamId(teamId);
   }
 };
 
