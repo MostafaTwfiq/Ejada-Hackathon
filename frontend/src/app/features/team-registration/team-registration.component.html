@@ -1,1 +1,40 @@
-<p>team-registration works!</p>
+<div class="container mt-4">
+    <h2>Team Registration Form</h2>
+    <form (ngSubmit)="submitTeamRegistrationForm()" #teamForm="ngForm">
+      <div class="form-group">
+        <label for="teamName">Team Name</label>
+        <input type="text" class="form-control" id="teamName" name="teamName" [(ngModel)]="teamName" required>
+      </div>
+      <div class="form-group">
+        <label for="hackathon">Hackathon</label>
+        <input type="text" class="form-control" id="hackathon" name="hackathon" [(ngModel)]="selectedHackathon" required disabled readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Team Members</label>
+        <div *ngFor="let member of teamMembers; let i = index">
+          <div class="row mb-2">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Name" [(ngModel)]="member.name" name="memberName{{i}}" required>
+            </div>
+            <div class="col">
+              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="member.email" name="memberEmail{{i}}" required>
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Mobile" [(ngModel)]="member.mobile" name="memberMobile{{i}}">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Title" [(ngModel)]="member.title" name="memberTitle{{i}}">
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-danger" *ngIf="teamMembers.length > 1" (click)="removeMember(i)">Remove Member</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button type="button" class="btn btn-primary mb-2" (click)="addMember()">Add Member</button>
+      
+      <button type="submit" class="btn btn-success">Register Team</button>
+    </form>
+  </div>

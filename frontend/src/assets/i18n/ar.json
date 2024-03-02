@@ -1,4 +1,10 @@
 {
+    "teamRegistration": {
+        "add": {
+            "success": "تم إضافة الفريق بنجاح.",
+            "failure": "فشل في إضافة افريق: {{error}}"
+        }
+    },
     "hackathonList": {
         "title": "الهاكاثونات",
         "showDetails": "عرض التفاصيل",

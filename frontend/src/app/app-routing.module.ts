@@ -5,6 +5,7 @@ import { HackathonDetailsComponent } from './features/hackathon-details/hackatho
 import { LoginComponent } from './features/login/login.component';
 import { SignupComponent } from './features/signup/signup.component';
 import { AuthGuard } from './guards/auth.guard';
+import { TeamRegistrationComponent } from './features/team-registration/team-registration.component';
 // Import other components
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'hackathons', component: HackathonListComponent, canActivate: [AuthGuard] },
   { path: 'hackathons/add', component: HackathonDetailsComponent, canActivate: [AuthGuard] }, // Add view route
   { path: 'hackathons/:id', component: HackathonDetailsComponent, canActivate: [AuthGuard] }, // Detail view route
+  { path: 'teams/add/:id', component: TeamRegistrationComponent, canActivate: [AuthGuard] }, // Add team route
   { path: '**', redirectTo: 'login' }
   // Other routes
 ];

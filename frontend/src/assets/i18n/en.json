@@ -1,4 +1,10 @@
 {
+    "teamRegistration": {
+        "add": {
+            "success": "Team added successfully.",
+            "failure": "Team addition failed: {{error}}"
+        }
+    },
     "hackathonList": {
         "title": "Hackathons",
         "showDetails": "Show Details",

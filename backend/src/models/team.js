@@ -101,6 +101,22 @@ class Team {
     }
   }
 
+  static async getCompetitorsByTeamId(teamId) {
+    try {
+      const [rows] = await pool.execute(`
+        SELECT c.*
+        FROM Competitor c
+        INNER JOIN Competitor_Team ct ON c.competitor_id = ct.competitor_id
+        WHERE ct.team_id = ?
+      `, [teamId]);
+
+      return rows;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
 }
 
 module.exports = Team;
