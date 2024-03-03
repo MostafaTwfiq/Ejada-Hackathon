@@ -1,5 +1,6 @@
 const db = require('../config/database');
 const challengeService = require('../services/challengeService');
+const { format } = require('date-fns');
 
 class Hackathon {
   // Fetch all hackathons
@@ -30,6 +31,9 @@ class Hackathon {
       connection = await db.getConnection();
       await connection.beginTransaction();
       
+      registration_start_date = format(new Date(registration_start_date), 'yyyy-MM-dd');
+      registration_end_date = format(new Date(registration_end_date), 'yyyy-MM-dd');
+      event_date = format(new Date(event_date), 'yyyy-MM-dd');
       // Create the hackathon
       let [hackathonResult] = await connection.execute(
         'INSERT INTO Hackathon (name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams) VALUES (?, ?, ?, ?, ?, ?, ?)',
@@ -71,8 +75,12 @@ class Hackathon {
 
   // Update a hackathon
   static async updateHackathon(hackathonId, hackathonData) {
-    const { name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams } = hackathonData;
+    let { name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams } = hackathonData;
     try {
+      registration_start_date = format(new Date(registration_start_date), 'yyyy-MM-dd');
+      registration_end_date = format(new Date(registration_end_date), 'yyyy-MM-dd');
+      event_date = format(new Date(event_date), 'yyyy-MM-dd');
+
       const [result] = await db.execute(
         'UPDATE Hackathon SET name = ?, theme = ?, registration_start_date = ?, registration_end_date = ?, event_date = ?, max_team_size = ?, max_num_teams = ? WHERE hackathon_id = ?',
         [name, theme, registration_start_date, registration_end_date, event_date, max_team_size, max_num_teams, hackathonId]
