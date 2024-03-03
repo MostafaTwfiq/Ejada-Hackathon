@@ -13,6 +13,7 @@ import { TeamService } from 'src/app/services/team.service';
 import { Team } from 'src/app/models/team.model';
 import { Observable, forkJoin } from 'rxjs';
 import { BaseComponent } from '../base/base.component';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-hackathon-details',
@@ -108,6 +109,11 @@ export class HackathonDetailsComponent  extends BaseComponent implements OnInit 
   }
 
   saveHackathon(): void {
+    // Format the date using date-fns
+    // this.hackathon.registration_start_date = new Date(format(new Date(this.hackathon.registration_start_date !== undefined ? this.hackathon.registration_start_date : 0), 'yyyy-MM-dd'));
+    // this.hackathon.registration_end_date = new Date(format(new Date(this.hackathon.registration_end_date !== undefined ? this.hackathon.registration_end_date : 0), 'yyyy-MM-dd'));
+    // this.hackathon.event_date = new Date(format(new Date(this.hackathon.event_date !== undefined ? this.hackathon.event_date : 0), 'yyyy-MM-dd'));
+
     if (this.isAddMode) {
       this.hackathon.challenges = this.challenges
       this.hackathonService.createHackathon(this.hackathon).subscribe({
@@ -118,6 +124,8 @@ export class HackathonDetailsComponent  extends BaseComponent implements OnInit 
         error: (error: HttpErrorResponse) => this.translate.get('hackathonDetails.add.failure', { error: error.message }).subscribe((message: string) => alert(message))
       });
     } else {
+      console.log(this.challenges)
+      this.hackathon.challenges = this.challenges
       this.hackathonService.updateHackathon(this.hackathon.hackathon_id, this.hackathon).subscribe({
         next: () => {
           this.translate.get('hackathonDetails.edit.success').subscribe((message: string) => alert(message));
