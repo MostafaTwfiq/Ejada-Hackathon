@@ -48,7 +48,7 @@ class Hackathon {
         if (existing.length > 0) {
           challengeId = existing[0].challenge_id;
         } else {
-          let createdChallenge = challengeService.createChallenge(challenge)
+          let createdChallenge = await challengeService.createChallenge(challenge)
           challengeId = createdChallenge.insertId;
         }
 

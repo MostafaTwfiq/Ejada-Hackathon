@@ -10,7 +10,6 @@ class Team {
       // Assuming db.getConnection() establishes a new connection
       connection = await pool.getConnection();
       await connection.beginTransaction();
-
       // Create the team
       let [teamResult] = await connection.execute(
           'INSERT INTO Team (team_name, hackathon_id, challenge_id) VALUES (?, ?, ?)',
@@ -29,7 +28,7 @@ class Team {
           if (existing.length > 0) {
               competitorId = existing[0].competitor_id; // Assuming competitor_id is the column name
           } else {
-              let createdCompetitor = competitorService.createCompetitor(competitor)
+              let createdCompetitor = await competitorService.createCompetitor(competitor)
               competitorId = createdCompetitor.insertId;
           }
 
