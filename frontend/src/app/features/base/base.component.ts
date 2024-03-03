@@ -7,9 +7,7 @@ export class BaseComponent {
   currentLanguage : any;
   constructor(injector: Injector) {
     this.translate = injector.get(TranslateService);
-    this.translate.setDefaultLang('ar');
-    this.translate.use('ar')
-    this.setLanguageDirection('ar');
+    // this.translate.setDefaultLang('ar');
     this.currentLanguage = this.translate.currentLang;
     // console.log("t" +this.translate.currentLang)
 

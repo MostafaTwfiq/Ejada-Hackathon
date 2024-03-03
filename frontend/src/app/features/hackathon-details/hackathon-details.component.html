@@ -102,7 +102,7 @@
                     }}</button>
             </form>
         </div>
-        <div class="mt-4" appRtl [isRtl]="this.isRtl" *ngIf="isViewMode">
+        <div class="mt-4" appRtl [isRtl]="this.isRtl" *ngIf="isViewMode && this.currentUser?.role == this.RoleEnum.ADMIN">
             <div class="mb-3">
                 <label class="label">{{ 'registeredTeams' | translate }}</label>
                 <ul>

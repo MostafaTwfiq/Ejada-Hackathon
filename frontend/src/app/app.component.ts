@@ -14,13 +14,15 @@ export class AppComponent {
   constructor(private translate: TranslateService, private elementRef: ElementRef, private renderer: Renderer2, 
     private authService: AuthenticationService,
     private router: Router) {
-      this.setLanguageDirection(this.currentLanguage);
-    // translate.setDefaultLang('ar');
-    // this.setLanguageDirection('ar');
-    this.translate.onLangChange.subscribe((event) => {
-      this.setLanguageDirection(event.lang);
-      this.switchLanguage(event.lang)
-    });
+      
+    translate.setDefaultLang('ar');
+    translate.use('ar')
+    this.setLanguageDirection(this.currentLanguage);
+    // // this.setLanguageDirection('ar');
+    // this.translate.onLangChange.subscribe((event) => {
+    //   this.setLanguageDirection(event.lang);
+    //   this.switchLanguage(event.lang)
+    // });
     }
 
   // ngOnInit(): void {
