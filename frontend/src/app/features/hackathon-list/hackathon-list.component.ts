@@ -35,7 +35,7 @@ export class HackathonListComponent extends BaseComponent implements OnInit {
     this.hackathonService.getHackathons()
       .subscribe((hackathons) => {
          this.hackathons = hackathons;
-         console.log(hackathons)
+        //  console.log(hackathons)
       });
   }
 

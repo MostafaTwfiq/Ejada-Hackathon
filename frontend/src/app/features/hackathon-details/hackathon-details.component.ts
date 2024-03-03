@@ -57,8 +57,8 @@ export class HackathonDetailsComponent  extends BaseComponent implements OnInit 
         this.teamService.getTeamsByHackathonId(+id).subscribe(
           (response: any) => {
             this.teams = response;
-            console.log(response)
-            console.log(this.teams)
+            // console.log(response)
+            // console.log(this.teams)
           },
           (error) => {
             console.error('Failed to get teams:', error);

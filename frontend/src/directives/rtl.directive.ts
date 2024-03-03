@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
     selector: '[appRtl]'
 })
 export class RtlDirective implements OnInit {
-    @Input() isRtl: boolean = false;
+    @Input() isRtl: boolean = true;
 
     constructor(private elementRef: ElementRef, private renderer: Renderer2, private translateService: TranslateService) { }
 

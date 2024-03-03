@@ -14,13 +14,20 @@ export class AppComponent {
   constructor(private translate: TranslateService, private elementRef: ElementRef, private renderer: Renderer2, 
     private authService: AuthenticationService,
     private router: Router) {
-    translate.setDefaultLang('ar');
-    this.setLanguageDirection('ar');
+      this.setLanguageDirection(this.currentLanguage);
+    // translate.setDefaultLang('ar');
+    // this.setLanguageDirection('ar');
     this.translate.onLangChange.subscribe((event) => {
-      console.log("here")
       this.setLanguageDirection(event.lang);
+      this.switchLanguage(event.lang)
     });
     }
+
+  // ngOnInit(): void {
+  //   // this.translate.setDefaultLang('ar');
+  //   this.translate.use('ar')
+  //   // this.setLanguageDirection('ar')
+  // }
 
   setLanguageDirection(lang: string) {
     const dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -28,7 +35,6 @@ export class AppComponent {
   }
   
   switchLanguage(language: string) {
-    console.log(language)
     this.currentLanguage = language;
     this.translate.use(language);
   }

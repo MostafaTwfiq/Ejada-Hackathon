@@ -20,7 +20,7 @@ export class TeamDetailsComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      console.log(params.get('id'))
+      // console.log(params.get('id'))
       this.teamId = +params.get('id')!;
       this.loadCompetitors();
     });

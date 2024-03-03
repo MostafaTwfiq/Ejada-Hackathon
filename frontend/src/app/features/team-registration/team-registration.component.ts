@@ -39,7 +39,7 @@ export class TeamRegistrationComponent implements OnInit {
       this.hackathon = hackathon.hackathon_details;
       this.hackathon.challenges = hackathon.challenges;
       this.maxSize = hackathon.hackathon_details.max_team_size == null ? 0 : hackathon.hackathon_details.max_team_size;
-      console.log(this.maxSize)
+      // console.log(this.maxSize)
     });
   }
 

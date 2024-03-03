@@ -1,4 +1,4 @@
-<div class="container m-3 card">
+<div class="container m-3 card" [class.text-left]="!isRtl" [class.text-right]="isRtl">
     <h2 class="title m-2">{{"team.name" | translate}} </h2>
     <ul>
         <li *ngFor="let competitor of competitors">
